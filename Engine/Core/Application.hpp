@@ -1,6 +1,7 @@
 #pragma once
 
-#include <SFML/Window.hpp>
+// Project files
+#include "Window.hpp"
 
 namespace Engine::Core
 {
@@ -12,5 +13,6 @@ namespace Engine::Core
         void run();
 
     private:
+        Window mWindow;
     };
 } // namespace Engine::Core

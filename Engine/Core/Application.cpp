@@ -8,9 +8,11 @@ namespace Engine::Core
 
     void Application::run()
     {
+        mWindow.init();
 
-        while(true)
+        while(mWindow.isOpen())
         {
+            mWindow.update();
         }
     }
 } // namespace Engine::Core
