@@ -5,6 +5,6 @@ TEST_CASE("Testing window", "[Window]")
 {
     SECTION("Window creation")
     {
-        Application app;
+        Engine::Core::Application app;
     }
 }
