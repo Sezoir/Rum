@@ -5,6 +5,8 @@ project(Core)
 add_library(${PROJECT_NAME}
         Application.hpp
         Application.cpp
+        Window.hpp
+        Window.cpp
         )
 
 target_compile_features(${PROJECT_NAME} PRIVATE
