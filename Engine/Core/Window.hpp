@@ -3,6 +3,7 @@
 #include <memory>
 // External libs
 #include <SFML/Window.hpp>
+// Project files
 
 namespace Engine::Core
 {
@@ -19,7 +20,7 @@ namespace Engine::Core
 
         [[nodiscard]] bool isOpen() const;
 
-        void update();
+        void pollInput();
 
     private:
         std::unique_ptr<sf::Window> mWindow = nullptr;

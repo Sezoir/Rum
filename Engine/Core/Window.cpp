@@ -15,7 +15,7 @@ namespace Engine::Core
     {
         return mWindow->isOpen();
     }
-    void Window::update()
+    void Window::pollInput()
     {
         // check all the window's events that were triggered since the last iteration of the loop
         sf::Event event;

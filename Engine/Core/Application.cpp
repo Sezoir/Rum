@@ -12,7 +12,12 @@ namespace Engine::Core
 
         while(mWindow.isOpen())
         {
-            mWindow.update();
+            // Process Input
+            mWindow.pollInput();
+
+            // Update game
+
+            // Render game
         }
     }
 } // namespace Engine::Core
