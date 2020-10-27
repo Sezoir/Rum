@@ -18,14 +18,41 @@ namespace Engine::Core
     void Window::pollInput()
     {
         // check all the window's events that were triggered since the last iteration of the loop
-        sf::Event event;
+        sf::Event event{};
         while(mWindow->pollEvent(event))
         {
-            // "close requested" event: we close the window
-            if(event.type == sf::Event::Closed)
-                mWindow->close();
-            else if(event.key.code == sf::Keyboard::Key::Escape)
-                mWindow->close();
+            switch(event.type)
+            {
+                case sf::Event::EventType::Closed:
+                {
+                    mWindow->close();
+                    break;
+                }
+                case sf::Event::EventType::KeyPressed:
+                {
+                    Events::KeyPressedEvent eve(event.key);
+                    notify(eve);
+                    break;
+                }
+                case sf::Event::EventType::KeyReleased:
+                {
+                    Events::KeyReleasedEvent eve(event.key);
+                    notify(eve);
+                    break;
+                }
+                case sf::Event::EventType::Resized:
+                {
+                    Events::WindowResizeEvent eve(event.size.width, event.size.height);
+                    notify(eve);
+                    break;
+                }
+                default:
+                {
+                    // @todo: add logging
+                    std::cout << "Event type not registered: " << event.type << std::endl;
+                    break;
+                }
+            }
         }
     }
 } // namespace Engine::Core

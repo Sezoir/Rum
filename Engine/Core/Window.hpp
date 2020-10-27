@@ -1,13 +1,17 @@
 #pragma once
 // Std libs
 #include <memory>
+#include <iostream>
 // External libs
 #include <SFML/Window.hpp>
 // Project files
+#include "Events/WindowEvent.hpp"
+#include "Events/KeyEvent.hpp"
+#include "Events/Event.hpp"
 
 namespace Engine::Core
 {
-    class Window
+    class Window : public Engine::Events::Observer
     {
     public:
         Window();
