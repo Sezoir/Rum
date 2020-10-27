@@ -17,16 +17,16 @@ namespace Engine::Events
         {
         }
 
-        [[nodiscard]] uint32_t GetWidth() const
+        [[nodiscard]] uint32_t getWidth() const
         {
             return mWidth;
         }
-        [[nodiscard]] uint32_t GetHeight() const
+        [[nodiscard]] uint32_t getHeight() const
         {
             return mHeight;
         }
 
-        [[nodiscard]] std::string ToString() const override
+        [[nodiscard]] std::string toString() const override
         {
             std::stringstream ss;
             ss << "WindowResizeEvent: " << mWidth << ", " << mHeight;

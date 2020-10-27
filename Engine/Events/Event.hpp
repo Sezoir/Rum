@@ -12,11 +12,11 @@ namespace Engine::Events
 #define BIT(x)       1u << unsigned(x)
 
 #define EVENT_CLASS_TYPE(type)                                                                                         \
-    virtual EventType GetEventType() const override                                                                    \
+    virtual EventType getEventType() const override                                                                    \
     {                                                                                                                  \
         return EventType::type;                                                                                        \
     }                                                                                                                  \
-    virtual const char* GetName() const override                                                                       \
+    virtual const char* getName() const override                                                                       \
     {                                                                                                                  \
         return #type;                                                                                                  \
     }
@@ -60,12 +60,12 @@ namespace Engine::Events
     class Event
     {
     public:
-        [[nodiscard]] virtual EventType GetEventType() const = 0;
-        [[nodiscard]] virtual const char* GetName() const = 0;
+        [[nodiscard]] virtual EventType getEventType() const = 0;
+        [[nodiscard]] virtual const char* getName() const = 0;
         [[nodiscard]] virtual EventCategory getEventCategory() const = 0;
-        [[nodiscard]] virtual std::string ToString() const
+        [[nodiscard]] virtual std::string toString() const
         {
-            return GetName();
+            return getName();
         }
 
         template <typename T>
@@ -78,7 +78,7 @@ namespace Engine::Events
             else
             {
                 // Error logging @todo
-                std::cout << "Error: convert function for event " << GetName() << " failed to cast correctly"
+                std::cout << "Error: convert function for event " << getName() << " failed to cast correctly"
                           << std::endl;
                 exit(-1);
             }
