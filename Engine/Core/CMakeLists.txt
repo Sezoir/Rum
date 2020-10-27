@@ -1,19 +1,17 @@
 cmake_minimum_required(VERSION 3.15)
 
-project(Core)
-
-add_library(${PROJECT_NAME}
+add_library(Core
         Application.hpp
         Application.cpp
         Window.hpp
         Window.cpp
         )
 
-target_compile_features(${PROJECT_NAME} PRIVATE
+target_compile_features(Core PRIVATE
         cxx_std_17)
 
-target_include_directories(${PROJECT_NAME} PUBLIC
-        ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(Core PUBLIC
+        ${PROJECT_SOURCE_DIR})
 
-target_link_libraries(${PROJECT_NAME}
+target_link_libraries(Core PUBLIC
         Dependencies)
