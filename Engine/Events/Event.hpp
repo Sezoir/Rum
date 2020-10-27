@@ -91,13 +91,13 @@ namespace Engine::Events
     class Observer
     {
     public:
-        void addSubject(std::function<void(Event&)> callback)
+        void addSubject(std::function<void(const Event&)> callback)
         {
             mSubjects.push_back(std::move(callback));
         }
 
     protected:
-        void notify(Event& event)
+        void notify(const Event& event)
         {
             for(auto& x : mSubjects)
             {
@@ -106,7 +106,7 @@ namespace Engine::Events
         }
 
     private:
-        std::vector<std::function<void(Event&)>> mSubjects = {};
+        std::vector<std::function<void(const Event&)>> mSubjects = {};
     };
 
 } // namespace Engine::Events
