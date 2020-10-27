@@ -39,4 +39,12 @@ namespace Engine::Events
         uint32_t mWidth, mHeight;
     };
 
+    class WindowCloseEvent : public Event
+    {
+    public:
+        WindowCloseEvent() = default;
+
+        EVENT_CLASS_TYPE(WindowClose)
+        EVENT_CATEGORY_TYPE(EventCategoryWindow)
+    };
 } // namespace Engine::Events
