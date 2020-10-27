@@ -21,10 +21,10 @@ namespace Engine::Events
         return #type;                                                                                                  \
     }
 
-#define EVENT_CATEGORY_TYPE(type)                                                                                      \
+#define EVENT_CATEGORY_TYPE(category)                                                                                  \
     virtual EventCategory getEventCategory() const override                                                            \
     {                                                                                                                  \
-        return EventCategory::type;                                                                                    \
+        return category;                                                                                               \
     }
 
     enum class EventType
@@ -38,12 +38,24 @@ namespace Engine::Events
     };
 
     // We use bit macro in-case we want to use bitwise operations later
-    enum class EventCategory
+    enum class EventCategory : uint32_t
     {
         None = 0,
-        EventCategoryWindow = BIT(0),
-        EventCategoryInput = BIT(1)
+        Window = BIT(0),
+        Input = BIT(1),
+        Keyboard = BIT(2)
+
     };
+    EventCategory operator|(EventCategory lhs, EventCategory rhs)
+    {
+        return static_cast<EventCategory>(static_cast<std::underlying_type<EventCategory>::type>(lhs) |
+                                          static_cast<std::underlying_type<EventCategory>::type>(rhs));
+    }
+    EventCategory operator&(EventCategory lhs, EventCategory rhs)
+    {
+        return static_cast<EventCategory>(static_cast<std::underlying_type<EventCategory>::type>(lhs) &
+                                          static_cast<std::underlying_type<EventCategory>::type>(rhs));
+    }
 
     class Event
     {

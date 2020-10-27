@@ -34,7 +34,7 @@ namespace Engine::Events
         }
 
         EVENT_CLASS_TYPE(WindowResize)
-        EVENT_CATEGORY_TYPE(EventCategoryWindow)
+        EVENT_CATEGORY_TYPE(EventCategory::Window)
     private:
         uint32_t mWidth, mHeight;
     };
@@ -45,6 +45,6 @@ namespace Engine::Events
         WindowCloseEvent() = default;
 
         EVENT_CLASS_TYPE(WindowClose)
-        EVENT_CATEGORY_TYPE(EventCategoryWindow)
+        EVENT_CATEGORY_TYPE(EventCategory::Window)
     };
 } // namespace Engine::Events
