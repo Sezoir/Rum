@@ -34,7 +34,9 @@ namespace Engine::Events
         WindowResize,
         WindowFocus,
         WindowLostFocus,
-        WindowMoved
+        WindowMoved,
+        KeyPressed,
+        KeyReleased
     };
 
     // We use bit macro in-case we want to use bitwise operations later
@@ -43,15 +45,16 @@ namespace Engine::Events
         None = 0,
         Window = BIT(0),
         Input = BIT(1),
-        Keyboard = BIT(2)
+        Keyboard = BIT(2),
+        T = Input & Keyboard
 
     };
-    EventCategory operator|(EventCategory lhs, EventCategory rhs)
+    inline EventCategory operator|(EventCategory lhs, EventCategory rhs)
     {
         return static_cast<EventCategory>(static_cast<std::underlying_type<EventCategory>::type>(lhs) |
                                           static_cast<std::underlying_type<EventCategory>::type>(rhs));
     }
-    EventCategory operator&(EventCategory lhs, EventCategory rhs)
+    inline EventCategory operator&(EventCategory lhs, EventCategory rhs)
     {
         return static_cast<EventCategory>(static_cast<std::underlying_type<EventCategory>::type>(lhs) &
                                           static_cast<std::underlying_type<EventCategory>::type>(rhs));
@@ -93,6 +96,7 @@ namespace Engine::Events
             mSubjects.push_back(std::move(callback));
         }
 
+    protected:
         void notify(Event& event)
         {
             for(auto& x : mSubjects)
