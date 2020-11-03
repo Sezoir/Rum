@@ -4,13 +4,16 @@ project(Dependencies)
 
 add_library(${PROJECT_NAME} INTERFACE)
 
+# Set project find cmakes folder
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/CMake)
+
+# Include spdlog
+find_package(Spdlog MODULE)
+
 # Include SFML
-list(APPEND CMAKE_PREFIX_PATH ${CMAKE_CURRENT_SOURCE_DIR}/SFML)
-set(SFML_STATIC_LIBRARIES TRUE)
-find_package(SFML 2.5.1 COMPONENTS system window graphics audio REQUIRED)
-target_include_directories(${PROJECT_NAME} INTERFACE
-        ${CMAKE_CURRENT_SOURCE_DIR}/SFML/include)
+find_package(SFML MODULE)
 
 # Link all libraries
 target_link_libraries(${PROJECT_NAME} INTERFACE
-        sfml-system sfml-window sfml-graphics sfml-audio)
+        sfml-system sfml-window sfml-graphics sfml-audio
+        Spdlog)
