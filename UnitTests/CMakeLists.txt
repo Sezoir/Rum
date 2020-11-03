@@ -41,7 +41,7 @@ if (ENABLE_UNIT_TESTS)
 
     # Pass flag for big source files for GNU (due to many SECTIONS resulting in assembler errors)
     if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-        set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} -Wa,-mbig-obj)
+        target_compile_options(${PROJECT_NAME} "-Wa,-mbig-obj")
     endif ()
 
     # Link libraries
