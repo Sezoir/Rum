@@ -7,7 +7,7 @@
 // Project files
 #include "Event.hpp"
 
-namespace Engine::Events
+namespace Rum::Events
 {
     class KeyPressedEvent : public Event
     {
@@ -63,4 +63,4 @@ namespace Engine::Events
         const sf::Event::KeyEvent mKey;
     };
 
-} // namespace Engine::Events
+} // namespace Rum::Events

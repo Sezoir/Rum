@@ -1,4 +1,4 @@
-# Engine
+# Rum Engine
 A personal attempt at a game engine library.
 
 ## Credits

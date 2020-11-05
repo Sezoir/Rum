@@ -6,7 +6,7 @@
 // Project files
 #include "Event.hpp"
 
-namespace Engine::Events
+namespace Rum::Events
 {
     class WindowResizeEvent : public Event
     {
@@ -47,4 +47,4 @@ namespace Engine::Events
         EVENT_CLASS_TYPE(WindowClose)
         EVENT_CATEGORY_TYPE(EventCategory::Window)
     };
-} // namespace Engine::Events
+} // namespace Rum::Events

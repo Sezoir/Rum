@@ -3,7 +3,7 @@
 // Project files
 #include "Window.hpp"
 
-namespace Engine::Core
+namespace Rum::Core
 {
     class Application
     {
@@ -15,4 +15,4 @@ namespace Engine::Core
     private:
         Window mWindow;
     };
-} // namespace Engine::Core
+} // namespace Rum::Core

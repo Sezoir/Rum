@@ -1,6 +1,6 @@
 #include "Window.hpp"
 
-namespace Engine::Core
+namespace Rum::Core
 {
 
     Window::Window()
@@ -55,4 +55,4 @@ namespace Engine::Core
             }
         }
     }
-} // namespace Engine::Core
+} // namespace Rum::Core

@@ -6,7 +6,7 @@
 #include <string>
 #include <sstream>
 
-namespace Engine::Events
+namespace Rum::Events
 {
 #define EVENT_FN(fn) [&](Event& event) { fn(event); }
 #define BIT(x)       1u << unsigned(x)
@@ -109,4 +109,4 @@ namespace Engine::Events
         std::vector<std::function<void(const Event&)>> mSubjects = {};
     };
 
-} // namespace Engine::Events
+} // namespace Rum::Events

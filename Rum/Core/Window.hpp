@@ -9,9 +9,9 @@
 #include "Events/KeyEvent.hpp"
 #include "Events/Event.hpp"
 
-namespace Engine::Core
+namespace Rum::Core
 {
-    class Window : public Engine::Events::Observer
+    class Window : public Rum::Events::Observer
     {
     public:
         Window();
@@ -29,4 +29,4 @@ namespace Engine::Core
     private:
         std::unique_ptr<sf::Window> mWindow = nullptr;
     };
-} // namespace Engine::Core
+} // namespace Rum::Core

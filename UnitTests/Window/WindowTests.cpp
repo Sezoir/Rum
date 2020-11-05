@@ -5,7 +5,7 @@ TEST_CASE("Testing window", "[Window]")
 {
     SECTION("Window creation")
     {
-        Engine::Core::Application app;
+        Rum::Core::Application app;
         app.run();
     }
 }

@@ -20,7 +20,7 @@ endfunction()
 
 if (ENABLE_UNIT_TESTS)
     # Declare project
-    project(MathUnitTests C CXX)
+    project(UnitTests C CXX)
 
     # Add Tests
     add_folder(Window)
@@ -37,7 +37,6 @@ if (ENABLE_UNIT_TESTS)
     # Add catch2
     target_include_directories(${PROJECT_NAME} PUBLIC
             ${CMAKE_CURRENT_SOURCE_DIR}/../Dependencies/Catch2)
-    #    include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../Dependencies/Catch2)
 
     # Pass flag for big source files for GNU (due to many SECTIONS resulting in assembler errors)
     if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
@@ -46,6 +45,6 @@ if (ENABLE_UNIT_TESTS)
 
     # Link libraries
     target_link_libraries(${PROJECT_NAME}
-            Engine
+            Rum
             )
 endif (ENABLE_UNIT_TESTS)

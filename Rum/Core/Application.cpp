@@ -1,6 +1,6 @@
 #include "Application.hpp"
 
-namespace Engine::Core
+namespace Rum::Core
 {
     Application::Application()
     {
@@ -20,4 +20,4 @@ namespace Engine::Core
             // Render game
         }
     }
-} // namespace Engine::Core
+} // namespace Rum::Core
