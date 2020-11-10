@@ -6,11 +6,12 @@
 // Project files
 #include "Events/WindowEvent.hpp"
 #include "Events/KeyEvent.hpp"
-#include "Events/Event.hpp"
+#include "RObject.hpp"
+//#include "Events/Event.hpp"
 
 namespace Rum::Core
 {
-    class Window : public Rum::Events::Observer
+    class Window : public RObject
     {
     public:
         Window();

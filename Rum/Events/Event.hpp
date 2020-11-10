@@ -2,7 +2,6 @@
 // Std libs
 #include <iostream>
 #include <vector>
-#include <functional>
 #include <string>
 #include <sstream>
 
@@ -91,22 +90,26 @@ namespace Rum::Events
     class Observer
     {
     public:
-        void addSubject(std::function<void(const Event&)> callback)
+        void addSubject(Observer& observer)
         {
-            mSubjects.push_back(std::move(callback));
+            mSubjects.push_back(&observer);
+        }
+
+        virtual void onEvent(const Event& event)
+        {
         }
 
     protected:
         void notify(const Event& event)
         {
-            for(auto& x : mSubjects)
+            for(auto* x : mSubjects)
             {
-                x(event);
+                x->onEvent(event);
             }
         }
 
     private:
-        std::vector<std::function<void(const Event&)>> mSubjects = {};
+        std::vector<Observer*> mSubjects = {};
     };
 
 } // namespace Rum::Events
