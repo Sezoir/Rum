@@ -50,6 +50,7 @@ namespace Rum::Core
     std::shared_ptr<spdlog::logger>& Log::getClientLogger()
     {
         // @todo: Change from assert
+        assert(isInit);
         return mClientLogger;
     }
 } // namespace Rum::Core
