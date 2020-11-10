@@ -1,7 +1,6 @@
 #pragma once
 // Std libs
 #include <memory>
-#include <iostream>
 // External libs
 #include <SFML/Window.hpp>
 // Project files

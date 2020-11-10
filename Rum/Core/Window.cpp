@@ -1,4 +1,6 @@
+// Project files
 #include "Window.hpp"
+#include "Log.hpp"
 
 namespace Rum::Core
 {
@@ -48,8 +50,7 @@ namespace Rum::Core
                 }
                 default:
                 {
-                    // @todo: add logging
-                    std::cout << "Event type not registered: " << event.type << std::endl;
+                    RUM_CORE_WARN("Event type not registered: {}", event.type);
                     break;
                 }
             }

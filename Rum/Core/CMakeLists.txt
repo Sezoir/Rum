@@ -5,6 +5,8 @@ add_library(Core
         Application.cpp
         Window.hpp
         Window.cpp
+        Log.hpp
+        Log.cpp
         )
 
 target_compile_features(Core PRIVATE
