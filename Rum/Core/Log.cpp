@@ -18,8 +18,8 @@ namespace Rum::Core
         sinks.push_back(std::make_shared<spdlog::sinks::basic_file_sink_st>("Rum.log", true));
 
         // Set the pattern
-        sinks[0]->set_pattern("[%T] [%l] %n: %v");
-        sinks[1]->set_pattern("[%T] [%l] %n: %v");
+        sinks[0]->set_pattern("%^ [%T] [%l] %n: %v %$");
+        sinks[1]->set_pattern("%^ [%T] [%l] %n: %v %$");
 
         // Set the console sink to only show log levels that are warnings or higher
         sinks[0]->set_level(spdlog::level::warn);
