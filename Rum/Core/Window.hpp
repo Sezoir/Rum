@@ -1,11 +1,20 @@
 #pragma once
 // Std libs
 #include <memory>
+#include <cstdint>
+#include <string>
 // Project files
 #include "RObject.hpp"
 
 namespace Rum::Core
 {
+    struct WindowConfig
+    {
+        uint32_t mWidth = 800;
+        uint32_t mHeight = 600;
+        std::string mTitle = "Rum Engine";
+    };
+
     class Window : public RObject
     {
     public:
@@ -22,6 +31,6 @@ namespace Rum::Core
 
         virtual void pollInput() = 0;
 
-        static std::unique_ptr<Window> create();
+        static std::unique_ptr<Window> create(const WindowConfig& windowConfig = WindowConfig());
     };
 } // namespace Rum::Core

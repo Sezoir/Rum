@@ -13,7 +13,7 @@ namespace Rum::Platform
     class WindowsWindow : public Core::Window
     {
     public:
-        WindowsWindow();
+        explicit WindowsWindow(const Core::WindowConfig& windowConfig);
 
         // Disable copying
         WindowsWindow(WindowsWindow const&) = delete;
@@ -27,5 +27,7 @@ namespace Rum::Platform
 
     private:
         std::unique_ptr<sf::Window> mWindow = nullptr;
+
+        Core::WindowConfig mConfig;
     };
 } // namespace Rum::Platform

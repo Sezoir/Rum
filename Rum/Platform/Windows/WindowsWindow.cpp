@@ -5,12 +5,15 @@
 namespace Rum::Platform
 {
 
-    WindowsWindow::WindowsWindow()
+    WindowsWindow::WindowsWindow(const Core::WindowConfig& windowConfig)
     {
+        mConfig.mHeight = windowConfig.mHeight;
+        mConfig.mWidth = windowConfig.mWidth;
+        mConfig.mTitle = windowConfig.mTitle;
     }
     bool WindowsWindow::init()
     {
-        mWindow = std::make_unique<sf::Window>(sf::VideoMode(800, 600), "My window");
+        mWindow = std::make_unique<sf::Window>(sf::VideoMode(mConfig.mWidth, mConfig.mHeight), mConfig.mTitle);
         return true;
     }
     bool WindowsWindow::isOpen() const
