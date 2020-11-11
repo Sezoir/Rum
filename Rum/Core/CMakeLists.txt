@@ -16,4 +16,4 @@ target_include_directories(Core PUBLIC
         ${PROJECT_SOURCE_DIR})
 
 target_link_libraries(Core PUBLIC
-        Dependencies)
+        Dependencies Platform)

@@ -1,32 +1,27 @@
 #pragma once
 // Std libs
 #include <memory>
-// External libs
-#include <SFML/Window.hpp>
 // Project files
-#include "Events/WindowEvent.hpp"
-#include "Events/KeyEvent.hpp"
 #include "RObject.hpp"
-//#include "Events/Event.hpp"
 
 namespace Rum::Core
 {
     class Window : public RObject
     {
     public:
-        Window();
+        Window() = default;
+        virtual ~Window() = default;
 
         // Disable copying
         Window(Window const&) = delete;
         Window& operator=(const Window&) = delete;
 
-        bool init();
+        virtual bool init() = 0;
 
-        [[nodiscard]] bool isOpen() const;
+        [[nodiscard]] virtual bool isOpen() const = 0;
 
-        void pollInput();
+        virtual void pollInput() = 0;
 
-    private:
-        std::unique_ptr<sf::Window> mWindow = nullptr;
+        static std::unique_ptr<Window> create();
     };
 } // namespace Rum::Core

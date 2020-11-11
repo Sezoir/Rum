@@ -1,5 +1,6 @@
 #pragma once
-
+// Std libs
+#include <memory>
 // Project files
 #include "Window.hpp"
 
@@ -13,6 +14,6 @@ namespace Rum::Core
         void run();
 
     private:
-        Window mWindow;
+        std::unique_ptr<Window> mWindow = nullptr;
     };
 } // namespace Rum::Core
