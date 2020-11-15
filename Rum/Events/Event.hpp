@@ -44,16 +44,14 @@ namespace Rum::Events
         None = 0,
         Window = BIT(0),
         Input = BIT(1),
-        Keyboard = BIT(2),
-        T = Input & Keyboard
-
+        Keyboard = BIT(2)
     };
-    inline EventCategory operator|(EventCategory lhs, EventCategory rhs)
+    constexpr inline EventCategory operator|(EventCategory lhs, EventCategory rhs)
     {
         return static_cast<EventCategory>(static_cast<std::underlying_type<EventCategory>::type>(lhs) |
                                           static_cast<std::underlying_type<EventCategory>::type>(rhs));
     }
-    inline EventCategory operator&(EventCategory lhs, EventCategory rhs)
+    constexpr inline EventCategory operator&(EventCategory lhs, EventCategory rhs)
     {
         return static_cast<EventCategory>(static_cast<std::underlying_type<EventCategory>::type>(lhs) &
                                           static_cast<std::underlying_type<EventCategory>::type>(rhs));
