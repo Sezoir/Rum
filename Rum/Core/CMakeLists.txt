@@ -8,6 +8,8 @@ add_library(Core
         Log.hpp
         Log.cpp
         KeyCodes.hpp
+        Input.hpp
+        Input.cpp
         )
 
 target_compile_features(Core PRIVATE

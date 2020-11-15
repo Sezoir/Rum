@@ -3,6 +3,7 @@
 #include <memory>
 // Project files
 #include "Window.hpp"
+#include "Input.hpp"
 
 namespace Rum::Core
 {
@@ -15,5 +16,6 @@ namespace Rum::Core
 
     private:
         std::unique_ptr<Window> mWindow = nullptr;
+        Input mInput;
     };
 } // namespace Rum::Core
