@@ -35,13 +35,28 @@ namespace Rum::Platform
                 }
                 case sf::Event::EventType::KeyPressed:
                 {
-                    Events::KeyPressedEvent eve(event.key);
+                    Events::KeyEvent keyEvent;
+                    // Note that we are using the fact that they both use the same underlying int16_t keycodes
+                    //                    RUM_CORE_INFO(static_cast<int16_t>(event.key.code));
+                    keyEvent.code = static_cast<Core::Keyboard::Key>(static_cast<int16_t>(event.key.code));
+                    keyEvent.alt = event.key.alt;
+                    keyEvent.control = event.key.control;
+                    keyEvent.shift = event.key.shift;
+                    keyEvent.system = event.key.system;
+                    Events::KeyPressedEvent eve(keyEvent);
                     notify(eve);
                     break;
                 }
                 case sf::Event::EventType::KeyReleased:
                 {
-                    Events::KeyReleasedEvent eve(event.key);
+                    Events::KeyEvent keyEvent;
+                    // Note that we are using the fact that they both use the same underlying int16_t keycodes
+                    keyEvent.code = static_cast<Core::Keyboard::Key>(static_cast<int16_t>(event.key.code));
+                    keyEvent.alt = event.key.alt;
+                    keyEvent.control = event.key.control;
+                    keyEvent.shift = event.key.shift;
+                    keyEvent.system = event.key.system;
+                    Events::KeyReleasedEvent eve(keyEvent);
                     notify(eve);
                     break;
                 }
@@ -53,7 +68,7 @@ namespace Rum::Platform
                 }
                 default:
                 {
-                    RUM_CORE_WARN("Event type not registered: {}", event.type);
+                    //                    RUM_CORE_WARN("Event type not registered: {}", event.type);
                     break;
                 }
             }

@@ -7,6 +7,7 @@ add_library(Core
         Window.cpp
         Log.hpp
         Log.cpp
+        KeyCodes.hpp
         )
 
 target_compile_features(Core PRIVATE

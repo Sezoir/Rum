@@ -6,18 +6,29 @@
 #include <SFML/Window.hpp>
 // Project files
 #include "Event.hpp"
+#include "Core/KeyCodes.hpp"
 
 namespace Rum::Events
 {
+    struct KeyEvent
+    {
+        // From SFML KeyEvent
+        Core::Keyboard::Key code = Core::Keyboard::Key::Unknown; //!< Code of the key that has been pressed
+        bool alt = false;                                        //!< Is the Alt key pressed?
+        bool control = false;                                    //!< Is the Control key pressed?
+        bool shift = false;                                      //!< Is the Shift key pressed?
+        bool system = false;                                     //!< Is the System key pressed?
+    };
+
     class KeyPressedEvent : public Event
     {
     public:
-        KeyPressedEvent(const sf::Event::KeyEvent key)
+        explicit KeyPressedEvent(const KeyEvent key)
             : mKey(key)
         {
         }
 
-        sf::Event::KeyEvent getKey() const
+        [[nodiscard]] KeyEvent getKey() const
         {
             return mKey;
         };
@@ -25,7 +36,7 @@ namespace Rum::Events
         std::string toString() const override
         {
             std::stringstream ss;
-            ss << "KeyPressedEvent: " << mKey.code;
+            ss << "KeyPressedEvent: " << static_cast<Core::Keyboard::KeyCode>(mKey.code);
             return ss.str();
         }
 
@@ -33,18 +44,18 @@ namespace Rum::Events
         EVENT_CATEGORY_TYPE(EventCategory::Keyboard | EventCategory::Input);
 
     private:
-        const sf::Event::KeyEvent mKey;
+        const KeyEvent mKey;
     };
 
     class KeyReleasedEvent : public Event
     {
     public:
-        KeyReleasedEvent(const sf::Event::KeyEvent key)
+        explicit KeyReleasedEvent(const KeyEvent key)
             : mKey(key)
         {
         }
 
-        sf::Event::KeyEvent getKey() const
+        [[nodiscard]] KeyEvent getKey() const
         {
             return mKey;
         };
@@ -52,7 +63,7 @@ namespace Rum::Events
         std::string toString() const override
         {
             std::stringstream ss;
-            ss << "KeyReleasedEvent: " << mKey.code;
+            ss << "KeyReleasedEvent: " << static_cast<Core::Keyboard::KeyCode>(mKey.code);
             return ss.str();
         }
 
@@ -60,7 +71,7 @@ namespace Rum::Events
         EVENT_CATEGORY_TYPE(EventCategory::Keyboard | EventCategory::Input);
 
     private:
-        const sf::Event::KeyEvent mKey;
+        const KeyEvent mKey;
     };
 
 } // namespace Rum::Events
