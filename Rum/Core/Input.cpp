@@ -1,8 +1,14 @@
 #include "Input.hpp"
-#include "Log.hpp"
+#include "Application.hpp"
 #include "Events/Event.hpp"
+
 namespace Rum::Core
 {
+    void Input::init()
+    {
+        Application::getInstance().getWindow().addSubject(*this);
+    }
+
     bool Input::isKeyPressed(const Keyboard::Key key)
     {
         return mKeyboard[static_cast<Keyboard::KeyCode>(key)];
@@ -47,8 +53,5 @@ namespace Rum::Core
             }
         }
     }
-    void Input::init(Window& window)
-    {
-        window.addSubject(*this);
-    }
+
 } // namespace Rum::Core

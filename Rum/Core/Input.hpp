@@ -12,7 +12,7 @@ namespace Rum::Core
     class Input : private RObject
     {
     public:
-        void init(Window& window);
+        void init();
 
         bool isKeyPressed(Keyboard::Key key);
 

@@ -14,7 +14,7 @@ namespace Rum::Core
 
         mWindow->init();
 
-        mInput.init(*mWindow);
+        mInput.init();
     }
 
     Application::~Application()
