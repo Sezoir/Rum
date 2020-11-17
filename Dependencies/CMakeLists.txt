@@ -13,7 +13,10 @@ find_package(Spdlog MODULE)
 # Include SFML
 find_package(SFML MODULE)
 
+# Include glm
+find_package(GLM MODULE)
+
 # Link all libraries
 target_link_libraries(${PROJECT_NAME} INTERFACE
         sfml-system sfml-window sfml-graphics sfml-audio
-        Spdlog)
+        Spdlog glm::glm)
