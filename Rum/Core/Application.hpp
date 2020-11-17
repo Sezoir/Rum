@@ -12,10 +12,20 @@ namespace Rum::Core
     public:
         Application();
 
+        ~Application();
+
         void run();
+
+        static Application& getInstance();
+
+        Input& getInput();
+
+        Window& getWindow();
 
     private:
         std::unique_ptr<Window> mWindow = nullptr;
         Input mInput;
+
+        static Application* mEngine;
     };
 } // namespace Rum::Core

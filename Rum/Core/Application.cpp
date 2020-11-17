@@ -3,14 +3,23 @@
 
 namespace Rum::Core
 {
+    Application* Application::mEngine = nullptr;
+
     Application::Application()
         : mWindow(std::move(Window::create()))
     {
+        Application::mEngine = this;
+
         Rum::Core::Log::init();
 
         mWindow->init();
 
         mInput.init(*mWindow);
+    }
+
+    Application::~Application()
+    {
+        Application::mEngine = nullptr;
     }
 
     void Application::run()
@@ -30,9 +39,23 @@ namespace Rum::Core
             mWindow->pollInput();
 
             // Update game
-            RUM_CORE_INFO(mInput.isKeyPressed(Keyboard::Key::A));
+            RUM_CORE_INFO(Application::getInstance().getInput().isKeyPressed(Keyboard::Key::A));
 
             // Render game
         }
     }
+    Application& Application::getInstance()
+    {
+        return *mEngine;
+    }
+
+    Input& Application::getInput()
+    {
+        return mInput;
+    }
+    Window& Application::getWindow()
+    {
+        return *mWindow;
+    }
+
 } // namespace Rum::Core
