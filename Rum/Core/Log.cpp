@@ -22,7 +22,7 @@ namespace Rum::Core
         sinks[1]->set_pattern("%^ [%T] [%l] %n: %v %$");
 
         // Set the console sink to only show log levels that are warnings or higher
-        sinks[0]->set_level(spdlog::level::warn);
+        sinks[0]->set_level(spdlog::level::info);
         sinks[1]->set_level(spdlog::level::trace);
 
         // Create a logger for the engine
