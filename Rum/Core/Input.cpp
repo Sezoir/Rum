@@ -1,6 +1,5 @@
 #include "Input.hpp"
 #include "Application.hpp"
-#include "Events/Event.hpp"
 
 namespace Rum::Core
 {
