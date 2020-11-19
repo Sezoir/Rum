@@ -11,12 +11,19 @@ list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/CMake)
 find_package(Spdlog MODULE)
 
 # Include SFML
-find_package(SFML MODULE)
+#find_package(SFML MODULE)
+
+# Include glfw
+find_package(GLFW MODULE)
 
 # Include glm
 find_package(GLM MODULE)
 
 # Link all libraries
 target_link_libraries(${PROJECT_NAME} INTERFACE
-        sfml-system sfml-window sfml-graphics sfml-audio
-        Spdlog glm::glm)
+        glfw Spdlog glm::glm)
+
+
+#target_link_libraries(${PROJECT_NAME} INTERFACE
+#        sfml-system sfml-window sfml-graphics sfml-audio
+#        Spdlog glm::glm)
