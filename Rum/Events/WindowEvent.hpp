@@ -36,7 +36,7 @@ namespace Rum::Events
         EVENT_CLASS_TYPE(WindowResize)
         EVENT_CATEGORY_TYPE(EventCategory::Window)
     private:
-        uint32_t mWidth, mHeight;
+        const uint32_t mWidth, mHeight;
     };
 
     class WindowCloseEvent : public Event
