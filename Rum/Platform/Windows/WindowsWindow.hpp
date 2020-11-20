@@ -2,7 +2,7 @@
 // Std libs
 #include <memory>
 // External libs
-#include <SFML/Window.hpp>
+#include <GLFW/glfw3.h>
 // Project files
 #include "Events/WindowEvent.hpp"
 #include "Events/KeyEvent.hpp"
@@ -14,6 +14,7 @@ namespace Rum::Platform
     {
     public:
         explicit WindowsWindow(const Core::WindowConfig& windowConfig);
+        ~WindowsWindow();
 
         // Disable copying
         WindowsWindow(WindowsWindow const&) = delete;
@@ -26,7 +27,15 @@ namespace Rum::Platform
         void pollInput() override;
 
     private:
-        std::unique_ptr<sf::Window> mWindow = nullptr;
+        struct DestroyWindow
+        {
+            void operator()(GLFWwindow* ptr)
+            {
+                glfwDestroyWindow(ptr);
+            }
+        };
+
+        std::unique_ptr<GLFWwindow, DestroyWindow> mWindow = nullptr;
 
         Core::WindowConfig mConfig;
     };
