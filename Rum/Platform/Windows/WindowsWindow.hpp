@@ -26,6 +26,8 @@ namespace Rum::Platform
 
         void pollInput() override;
 
+        void update() override;
+
     private:
         struct DestroyWindow
         {

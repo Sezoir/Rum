@@ -89,4 +89,9 @@ namespace Rum::Platform
         glfwPollEvents();
     }
 
+    void WindowsWindow::update()
+    {
+        glfwSwapBuffers(mWindow.get());
+    }
+
 } // namespace Rum::Platform

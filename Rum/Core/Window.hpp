@@ -31,6 +31,8 @@ namespace Rum::Core
 
         virtual void pollInput() = 0;
 
+        virtual void update() = 0;
+
         static std::unique_ptr<Window> create(const WindowConfig& windowConfig = WindowConfig());
     };
 } // namespace Rum::Core

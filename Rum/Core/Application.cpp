@@ -39,9 +39,11 @@ namespace Rum::Core
             mWindow->pollInput();
 
             // Update game
-            RUM_CORE_INFO(Application::getInstance().getInput().isKeyPressed(Keyboard::Key::A));
+            if(Application::getInstance().getInput().isKeyPressed(Keyboard::Key::A))
+                RUM_CORE_INFO(true);
 
             // Render game
+            mWindow->update();
         }
     }
     Application& Application::getInstance()
