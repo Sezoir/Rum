@@ -2,8 +2,6 @@
 // Std libs
 #include <string>
 #include <sstream>
-// External libs
-#include <SFML/Window.hpp>
 // Project files
 #include "Event.hpp"
 #include "Core/KeyCodes.hpp"
