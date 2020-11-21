@@ -1,3 +1,4 @@
+#include <Events/MouseEvent.hpp>
 #include "Input.hpp"
 #include "Application.hpp"
 
@@ -8,11 +9,6 @@ namespace Rum::Core
         Application::getInstance().getWindow().addSubject(*this);
     }
 
-    bool Input::isKeyPressed(const Keyboard::Key key)
-    {
-        return mKeyboard[static_cast<Keyboard::KeyCode>(key)];
-    }
-
     void Input::onEvent(const Events::Event& event)
     {
 
@@ -21,6 +17,11 @@ namespace Rum::Core
             case Events::EventCategory::Keyboard | Events::EventCategory::Input:
             {
                 handleKeyboardEvent(event);
+                break;
+            }
+            case Events::EventCategory::Mouse | Events::EventCategory::Input:
+            {
+                handleMouseEvent(event);
                 break;
             }
             default:
@@ -51,6 +52,64 @@ namespace Rum::Core
                 break;
             }
         }
+    }
+
+    void Input::handleMouseEvent(const Events::Event& event)
+    {
+        switch(event.getEventType())
+        {
+            case Events::EventType::MouseMoved:
+            {
+                auto mouseEvent = dynamic_cast<const Events::MouseMoveEvent&>(event);
+                mXMousePos = mouseEvent.getX();
+                mYMousePos = mouseEvent.getY();
+                break;
+            }
+            case Events::EventType::MouseScrolled:
+            {
+                auto mouseEvent = dynamic_cast<const Events::MouseScrolledEvent&>(event);
+                mXMouseOffset = mouseEvent.getXOffset();
+                mYMouseOffset = mouseEvent.getYOffset();
+                break;
+            }
+            case Events::EventType::MouseButtonPressed:
+            {
+
+                auto mouseEvent = dynamic_cast<const Events::MouseButtonPressedEvent&>(event);
+                mMouse[static_cast<Mouse::MouseCode>(mouseEvent.getButton())] = true;
+                break;
+            }
+            case Events::EventType::MouseButtonReleased:
+            {
+                auto mouseEvent = dynamic_cast<const Events::MouseButtonReleasedEvent&>(event);
+                mMouse[static_cast<Mouse::MouseCode>(mouseEvent.getButton())] = false;
+                break;
+            }
+            default:
+            {
+                break;
+            }
+        }
+    }
+
+    bool Input::isKeyPressed(const Keyboard::Key key)
+    {
+        return mKeyboard[static_cast<Keyboard::KeyCode>(key)];
+    }
+
+    glm::vec2 Input::getCursorPosition()
+    {
+        return {mXMousePos, mYMousePos};
+    }
+
+    glm::vec2 Input::getMouseOffset()
+    {
+        return {mXMouseOffset, mYMouseOffset};
+    }
+
+    bool Input::isMousePressed(Mouse::Button button)
+    {
+        return mMouse[static_cast<Mouse::MouseCode>(button)];
     }
 
 } // namespace Rum::Core
