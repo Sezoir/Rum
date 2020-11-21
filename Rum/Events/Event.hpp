@@ -35,7 +35,11 @@ namespace Rum::Events
         WindowLostFocus,
         WindowMoved,
         KeyPressed,
-        KeyReleased
+        KeyReleased,
+        MouseMoved,
+        MouseScrolled,
+        MouseButtonPressed,
+        MouseButtonReleased
     };
 
     // We use bit macro in-case we want to use bitwise operations later
@@ -44,7 +48,8 @@ namespace Rum::Events
         None = 0,
         Window = BIT(0),
         Input = BIT(1),
-        Keyboard = BIT(2)
+        Keyboard = BIT(2),
+        Mouse = BIT(3)
     };
     constexpr inline EventCategory operator|(EventCategory lhs, EventCategory rhs)
     {

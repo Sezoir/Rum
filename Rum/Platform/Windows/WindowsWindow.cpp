@@ -1,4 +1,5 @@
 // Project files
+#include <Events/MouseEvent.hpp>
 #include "WindowsWindow.hpp"
 
 namespace Rum::Platform
@@ -66,6 +67,40 @@ namespace Rum::Platform
                     Events::KeyEvent event;
                     event.code = static_cast<Core::Keyboard::Key>(key);
                     rWindow.notify(Events::KeyPressedEvent(event));
+                    break;
+                }
+            }
+        });
+
+        glfwSetCursorPosCallback(mWindow.get(), [](GLFWwindow* window, double xPos, double yPos) {
+            // Get pointer to WindowsWindow class
+            WindowsWindow& rWindow = *static_cast<WindowsWindow*>(glfwGetWindowUserPointer(window));
+
+            rWindow.notify(Events::MouseMoveEvent(xPos, yPos));
+        });
+
+        glfwSetScrollCallback(mWindow.get(), [](GLFWwindow* window, double xOffset, double yOffset) {
+            // Get pointer to WindowsWindow class
+            WindowsWindow& rWindow = *static_cast<WindowsWindow*>(glfwGetWindowUserPointer(window));
+
+            rWindow.notify(Events::MouseScrolledEvent(xOffset, yOffset));
+        });
+
+        glfwSetMouseButtonCallback(mWindow.get(), [](GLFWwindow* window, int button, int action, int mods) {
+            // Get pointer to WindowsWindow class
+            WindowsWindow& rWindow = *static_cast<WindowsWindow*>(glfwGetWindowUserPointer(window));
+
+            // Send event based on action
+            switch(action)
+            {
+                case GLFW_PRESS:
+                {
+                    rWindow.notify(Events::MouseButtonPressedEvent(static_cast<Core::Mouse::Button>(button)));
+                    break;
+                }
+                case GLFW_RELEASE:
+                {
+                    rWindow.notify(Events::MouseButtonReleasedEvent(static_cast<Core::Mouse::Button>(button)));
                     break;
                 }
             }
