@@ -10,14 +10,28 @@ namespace Rum::Core
     class Log
     {
     public:
+        /**
+         * @brief Initialises the logger.
+         */
         static void init();
 
+        /**
+         * @brief Returns a reference to the engine logger.
+         * @return std::shared_ptr<spdlog::logger>&: Reference to the core logger.
+         */
         static std::shared_ptr<spdlog::logger>& getCoreLogger();
 
+        /**
+         * @brief Returns a reference to the application logger.
+         * @return std::shared_ptr<spdlog::logger>&: Reference to the client logger.
+         */
         static std::shared_ptr<spdlog::logger>& getClientLogger();
 
     private:
+        // Initialisation guard
         static bool isInit;
+
+        // References to loggers
         static std::shared_ptr<spdlog::logger> mCoreLogger;
         static std::shared_ptr<spdlog::logger> mClientLogger;
     };

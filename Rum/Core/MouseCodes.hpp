@@ -4,10 +4,13 @@
 
 namespace Rum::Core::Mouse
 {
+    // The underlying type for Button
     using MouseCode = int16_t;
 
+    // The number of buttons @todo: Make this automatic at compile time, by maybe using macro line count
     const uint16_t ButtonCount = 8;
 
+    // Mouse buttons
     enum class Button : MouseCode
     {
         Button0 = 0,

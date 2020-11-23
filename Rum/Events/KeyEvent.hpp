@@ -18,6 +18,7 @@ namespace Rum::Events
         bool system = false;                                     //!< Is the System key pressed?
     };
 
+    // Used when a key is pressed
     class KeyPressedEvent : public Event
     {
     public:
@@ -45,6 +46,7 @@ namespace Rum::Events
         const KeyEvent mKey;
     };
 
+    // Used when a key is released
     class KeyReleasedEvent : public Event
     {
     public:

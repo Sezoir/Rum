@@ -4,6 +4,7 @@
 
 namespace Rum::Platform
 {
+    // Count of windows
     uint16_t WindowsWindow::mWindowCount = 0;
 
     WindowsWindow::WindowsWindow(const Core::WindowConfig& windowConfig)
@@ -36,15 +37,20 @@ namespace Rum::Platform
 
     bool WindowsWindow::init()
     {
-
+        // Create new window
         auto* window = glfwCreateWindow(mConfig.mWidth, mConfig.mHeight, mConfig.mTitle.c_str(), NULL, NULL);
         mWindow = std::unique_ptr<GLFWwindow, DestroyWindow>(window);
 
+        // Set glfw user pointer for use in window callbacks
         glfwSetWindowUserPointer(window, this);
 
+        // Set context current
         glfwMakeContextCurrent(mWindow.get());
+
+        // Set swap interval @todo: Change to seperate function
         glfwSwapInterval(1);
 
+        // Set the window resize callback
         glfwSetWindowSizeCallback(mWindow.get(), [](GLFWwindow* window, int width, int height) {
             // Get pointer to WindowsWindow class
             WindowsWindow& rWindow = *static_cast<WindowsWindow*>(glfwGetWindowUserPointer(window));
@@ -54,6 +60,7 @@ namespace Rum::Platform
             rWindow.notify(eve);
         });
 
+        // Set the window close callback
         glfwSetWindowCloseCallback(mWindow.get(), [](GLFWwindow* window) {
             // Get pointer to WindowsWindow class
             WindowsWindow& rWindow = *static_cast<WindowsWindow*>(glfwGetWindowUserPointer(window));
@@ -62,6 +69,7 @@ namespace Rum::Platform
             rWindow.notify(Events::WindowCloseEvent());
         });
 
+        // Set the keyboard callback
         glfwSetKeyCallback(mWindow.get(), [](GLFWwindow* window, int key, int scancode, int action, int mods) {
             // Get pointer to WindowsWindow class
             WindowsWindow& rWindow = *static_cast<WindowsWindow*>(glfwGetWindowUserPointer(window));
@@ -93,6 +101,7 @@ namespace Rum::Platform
             }
         });
 
+        // Set the cursor position callback
         glfwSetCursorPosCallback(mWindow.get(), [](GLFWwindow* window, double xPos, double yPos) {
             // Get pointer to WindowsWindow class
             WindowsWindow& rWindow = *static_cast<WindowsWindow*>(glfwGetWindowUserPointer(window));
@@ -100,6 +109,7 @@ namespace Rum::Platform
             rWindow.notify(Events::MouseMoveEvent(xPos, yPos));
         });
 
+        // Set the scroll wheel callback
         glfwSetScrollCallback(mWindow.get(), [](GLFWwindow* window, double xOffset, double yOffset) {
             // Get pointer to WindowsWindow class
             WindowsWindow& rWindow = *static_cast<WindowsWindow*>(glfwGetWindowUserPointer(window));
@@ -107,6 +117,7 @@ namespace Rum::Platform
             rWindow.notify(Events::MouseScrolledEvent(xOffset, yOffset));
         });
 
+        // Set the mouse buttons callback
         glfwSetMouseButtonCallback(mWindow.get(), [](GLFWwindow* window, int button, int action, int mods) {
             // Get pointer to WindowsWindow class
             WindowsWindow& rWindow = *static_cast<WindowsWindow*>(glfwGetWindowUserPointer(window));
@@ -127,6 +138,7 @@ namespace Rum::Platform
             }
         });
 
+        // Return successful initialisation
         return true;
     }
 

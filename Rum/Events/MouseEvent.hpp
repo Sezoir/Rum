@@ -8,7 +8,7 @@
 
 namespace Rum::Events
 {
-
+    // Used when the cursor is moved
     class MouseMoveEvent : public Event
     {
     public:
@@ -43,6 +43,7 @@ namespace Rum::Events
         const double mX, mY;
     };
 
+    // Used when the mouse wheel is scrolled
     class MouseScrolledEvent : public Event
     {
     public:
@@ -77,6 +78,7 @@ namespace Rum::Events
         const double mX, mY;
     };
 
+    // Used when a mouse button is pressed
     class MouseButtonPressedEvent : public Event
     {
     public:
@@ -105,6 +107,7 @@ namespace Rum::Events
         const Core::Mouse::Button mButton;
     };
 
+    // Used when a mouse button is released
     class MouseButtonReleasedEvent : public Event
     {
     public:

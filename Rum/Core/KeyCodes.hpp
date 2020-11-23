@@ -4,10 +4,13 @@
 
 namespace Rum::Core::Keyboard
 {
+    // The underlying type for Key
     using KeyCode = int16_t;
 
+    // The number of keys @todo: Make this automatic at compile time, by maybe using macro line count
     const uint16_t KeyCount = 121;
 
+    // Keys
     enum class Key : KeyCode
     {
         // From glfw.h

@@ -6,12 +6,14 @@ namespace Rum::Core
 {
     void Input::init()
     {
+        // Subscribe to window event notifications
         Application::getInstance().getWindow().addSubject(*this);
     }
 
     void Input::onEvent(const Events::Event& event)
     {
-
+        // Get the category of the event, to know how to process it.
+        // The idea behind this is to reduce the amount of event type checks, as well to keep code readable.
         switch(event.getEventCategory())
         {
             case Events::EventCategory::Keyboard | Events::EventCategory::Input:
@@ -33,6 +35,7 @@ namespace Rum::Core
 
     void Input::handleKeyboardEvent(const Events::Event& event)
     {
+        // Check for the event
         switch(event.getEventType())
         {
             case Events::EventType::KeyPressed:
@@ -56,6 +59,7 @@ namespace Rum::Core
 
     void Input::handleMouseEvent(const Events::Event& event)
     {
+        // Check for the event
         switch(event.getEventType())
         {
             case Events::EventType::MouseMoved:

@@ -8,6 +8,7 @@
 
 namespace Rum::Events
 {
+    // Used when a window is resized
     class WindowResizeEvent : public Event
     {
     public:
@@ -21,6 +22,7 @@ namespace Rum::Events
         {
             return mWidth;
         }
+
         [[nodiscard]] uint32_t getHeight() const
         {
             return mHeight;
@@ -39,6 +41,7 @@ namespace Rum::Events
         const uint32_t mWidth, mHeight;
     };
 
+    // Used when a window is closed
     class WindowCloseEvent : public Event
     {
     public:
