@@ -1,9 +1,10 @@
 #pragma once
 // Std libs
-#include <iostream>
 #include <vector>
 #include <string>
 #include <sstream>
+// Project files
+#include "Core/Log.hpp"
 
 namespace Rum::Events
 {
@@ -92,10 +93,8 @@ namespace Rum::Events
             }
             else
             {
-                // Error logging @todo
-                std::cout << "Error: convert function for event " << getName() << " failed to cast correctly"
-                          << std::endl;
-                exit(-1);
+                // Error logging
+                RUM_CORE_ERROR("Error: convert function for event %s failed to cast correctly", getName());
             }
         }
     };
