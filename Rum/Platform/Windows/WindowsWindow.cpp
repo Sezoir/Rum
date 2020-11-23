@@ -4,17 +4,38 @@
 
 namespace Rum::Platform
 {
+    uint16_t WindowsWindow::mWindowCount = 0;
 
     WindowsWindow::WindowsWindow(const Core::WindowConfig& windowConfig)
     {
+        // Check if no windows have been created, if not then initialise glfw lib
+        if(mWindowCount == 0)
+        {
+            if(!glfwInit())
+                exit(-1);
+        }
+
+        // Increase count of windows
+        mWindowCount++;
+
+        // Set config properties of window
         mConfig.mHeight = windowConfig.mHeight;
         mConfig.mWidth = windowConfig.mWidth;
         mConfig.mTitle = windowConfig.mTitle;
     }
+
+    WindowsWindow::~WindowsWindow()
+    {
+        // Check if last window is being destroyed, if so terminated glfw lib
+        if(mWindowCount == 1)
+            glfwTerminate();
+
+        // Decrease window count
+        mWindowCount--;
+    }
+
     bool WindowsWindow::init()
     {
-        if(!glfwInit())
-            exit(-1);
 
         auto* window = glfwCreateWindow(mConfig.mWidth, mConfig.mHeight, mConfig.mTitle.c_str(), NULL, NULL);
         mWindow = std::unique_ptr<GLFWwindow, DestroyWindow>(window);
@@ -107,11 +128,6 @@ namespace Rum::Platform
         });
 
         return true;
-    }
-
-    WindowsWindow::~WindowsWindow()
-    {
-        glfwTerminate();
     }
 
     bool WindowsWindow::isOpen() const

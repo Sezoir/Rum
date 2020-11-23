@@ -40,5 +40,7 @@ namespace Rum::Platform
         std::unique_ptr<GLFWwindow, DestroyWindow> mWindow = nullptr;
 
         Core::WindowConfig mConfig;
+
+        static uint16_t mWindowCount;
     };
 } // namespace Rum::Platform
