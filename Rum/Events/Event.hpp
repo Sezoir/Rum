@@ -94,7 +94,7 @@ namespace Rum::Events
             else
             {
                 // Error logging
-                RUM_CORE_ERROR("Error: convert function for event %s failed to cast correctly", getName());
+                RUM_CORE_ERROR("Error: convert function for event {} failed to cast correctly", getName());
             }
         }
     };
