@@ -7,8 +7,7 @@
 
 namespace Rum::Events
 {
-#define EVENT_FN(fn) [&](Event& event) { fn(event); }
-#define BIT(x)       1u << unsigned(x)
+#define BIT(x) 1u << unsigned(x)
 
 #define EVENT_CLASS_TYPE(type)                                                                                         \
     virtual EventType getEventType() const override                                                                    \
