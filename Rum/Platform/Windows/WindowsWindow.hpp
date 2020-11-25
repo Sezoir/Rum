@@ -7,6 +7,8 @@
 #include "Events/WindowEvent.hpp"
 #include "Events/KeyEvent.hpp"
 #include "Core/Window.hpp"
+#include "Core/KeyCodes.hpp"
+#include "Core/MouseCodes.hpp"
 
 namespace Rum::Platform
 {
@@ -65,6 +67,13 @@ namespace Rum::Platform
                 glfwDestroyWindow(ptr);
             }
         };
+
+        /**
+         * @brief Converts the glfw scan code for the keyboard to a Rum Key type.
+         * @param key: glfw scancode key.
+         * @return Core::Keyboard::Key: The associative Rum key.
+         */
+        constexpr Core::Keyboard::Key getKey(int key);
 
         // Window pointer
         std::unique_ptr<GLFWwindow, DestroyWindow> mWindow = nullptr;

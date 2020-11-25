@@ -68,7 +68,7 @@ namespace Rum::Core
         void handleMouseEvent(const Events::Event& event);
 
         // Keyboard layout of which keys are currently pressed
-        std::array<bool, Keyboard::KeyCount> mKeyboard = {};
+        std::array<bool, Keyboard::getKeyCount()> mKeyboard = {};
 
         // Cursor position
         double mXMousePos, mYMousePos = 0;
@@ -77,7 +77,7 @@ namespace Rum::Core
         double mXMouseOffset, mYMouseOffset = 0;
 
         // Mouse button layout
-        std::array<bool, Mouse::ButtonCount> mMouse = {};
+        std::array<bool, Mouse::getMouseButtonCount()> mMouse = {};
     };
 
 } // namespace Rum::Core
