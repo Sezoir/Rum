@@ -41,6 +41,9 @@ namespace Rum::Platform
         auto* window = glfwCreateWindow(mConfig.mWidth, mConfig.mHeight, mConfig.mTitle.c_str(), NULL, NULL);
         mWindow = std::unique_ptr<GLFWwindow, DestroyWindow>(window);
 
+        mContext = Renderer::DrawContext::create(mWindow.get());
+        mContext->init();
+
         // Set glfw user pointer for use in window callbacks
         glfwSetWindowUserPointer(window, this);
 
@@ -154,7 +157,7 @@ namespace Rum::Platform
 
     void WindowsWindow::update()
     {
-        glfwSwapBuffers(mWindow.get());
+        mContext->swapBuffers();
     }
 
     constexpr Core::Keyboard::Key WindowsWindow::getKey(int key)

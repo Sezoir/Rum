@@ -4,6 +4,7 @@
 // Project files
 #include "Window.hpp"
 #include "Input.hpp"
+#include "Renderer/Renderer.hpp"
 
 namespace Rum::Core
 {

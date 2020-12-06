@@ -15,6 +15,9 @@ namespace Rum::Core
         // Initialise logging
         Rum::Core::Log::init();
 
+        // Init renderer
+        Renderer::Renderer::init();
+
         // Initialise window
         mWindow->init();
 

@@ -4,6 +4,7 @@
 // External libs
 #include <GLFW/glfw3.h>
 // Project files
+#include "Renderer/DrawContext.hpp"
 #include "Events/WindowEvent.hpp"
 #include "Events/KeyEvent.hpp"
 #include "Core/Window.hpp"
@@ -77,6 +78,9 @@ namespace Rum::Platform
 
         // Window pointer
         std::unique_ptr<GLFWwindow, DestroyWindow> mWindow = nullptr;
+
+        // DrawContext pointer
+        std::unique_ptr<Renderer::DrawContext> mContext = nullptr;
 
         // Configuration of window
         Core::WindowConfig mConfig;

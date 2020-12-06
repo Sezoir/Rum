@@ -2,7 +2,11 @@ cmake_minimum_required(VERSION 3.15)
 
 set(PLATFORM_FILES)
 
-add_library(Platform)
+add_library(Platform
+        OpenGL/OpenGlContext.hpp
+        OpenGL/OpenGlContext.cpp
+        OpenGL/OpenGlRendererApi.hpp
+        OpenGL/OpenGlRendererApi.cpp)
 
 # Add the correct platform/os specific files
 if (${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
