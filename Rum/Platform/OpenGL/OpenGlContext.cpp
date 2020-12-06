@@ -16,6 +16,12 @@ namespace Rum::Platform::OpenGL
         glfwMakeContextCurrent(mWindow);
         if(!gladLoadGLLoader((GLADloadproc) glfwGetProcAddress))
             RUM_CORE_CRITICAL("GLAD failed to initialise.");
+
+        RUM_CORE_INFO("GLAD successfully initialised");
+        RUM_CORE_INFO("OpenGL Info:");
+        RUM_CORE_INFO("  Vendor: {0}", glGetString(GL_VENDOR));
+        RUM_CORE_INFO("  Renderer: {0}", glGetString(GL_RENDERER));
+        RUM_CORE_INFO("  Version: {0}", glGetString(GL_VERSION));
     }
 
     void OpenGLContext::swapBuffers()
