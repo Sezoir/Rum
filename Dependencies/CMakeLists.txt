@@ -7,6 +7,13 @@ add_library(${PROJECT_NAME} INTERFACE)
 # Set project find cmakes folder
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/CMake)
 
+# Include OpenGL
+find_package(OpenGL REQUIRED)
+target_include_directories(Dependencies INTERFACE ${OPENGL_INCLUDE_DIR})
+
+# Include glad
+find_package(GLAD MODULE)
+
 # Include spdlog
 find_package(Spdlog MODULE)
 
@@ -21,7 +28,7 @@ find_package(GLM MODULE)
 
 # Link all libraries
 target_link_libraries(${PROJECT_NAME} INTERFACE
-        glfw Spdlog glm::glm)
+        ${OPENGL_gl_LIBRARY} glad glfw Spdlog glm::glm)
 
 
 #target_link_libraries(${PROJECT_NAME} INTERFACE
