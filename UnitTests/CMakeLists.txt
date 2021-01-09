@@ -24,6 +24,7 @@ if (ENABLE_UNIT_TESTS)
 
     # Add Tests
     add_folder(Window)
+    add_folder(Input)
 
     # Add executable
     add_executable(${PROJECT_NAME}
