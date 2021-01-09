@@ -4,10 +4,18 @@
 
 namespace Rum::Core
 {
-    void Input::init()
+    void Input::init(Window* window)
     {
-        // Subscribe to window event notifications
-        Application::getInstance().getWindow().addSubject(*this);
+        // Check if window is provided
+        if(window == nullptr)
+        {
+            // Subscribe to window event notifications
+            Application::getInstance().getWindow().addSubject(*this);
+        }
+        else
+        {
+            window->addSubject(*this);
+        }
     }
 
     void Input::onEvent(const Events::Event& event)

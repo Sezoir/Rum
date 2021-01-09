@@ -18,7 +18,7 @@ namespace Rum::Core
         /**
          * @brief Initialise the input, such as the event system.
          */
-        void init();
+        void init(Window* window = nullptr);
 
         /**
          * @brief Check whether a key is pressed.
