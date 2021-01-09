@@ -12,7 +12,7 @@ add_subdirectory(Renderer)
 add_subdirectory(Core)
 
 target_include_directories(${PROJECT_NAME} INTERFACE
-        ${CMAKE_CURRENT_SOURCE_DIR})
+        ${PROJECT_SOURCE_DIR})
 
 target_link_libraries(${PROJECT_NAME} INTERFACE
-        Core)
+        Core Platform Renderer)
