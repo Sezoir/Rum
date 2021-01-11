@@ -11,11 +11,35 @@ OPTION(ENABLE_UNIT_TESTS "Enables all unit tests." ON)
 # Unit tests
 #########################################################
 # Add each folder for testing
-function(add_folder FOLDER)
+function(add_unit_test FOLDER)
+
     # Get all source files
-    file(GLOB_RECURSE GLOB_RESULT CONFIGURE_DEPENDS ${FOLDER}/*.c ${FOLDER}/*.cpp)
-    # Append source files
-    set(SOURCE_FILES ${SOURCE_FILES} ${GLOB_RESULT} PARENT_SCOPE)
+    file(GLOB_RECURSE SOURCE_FILES CONFIGURE_DEPENDS ${FOLDER}/*.cpp ${FOLDER}/*.c)
+
+    # Add executable
+    add_executable(${FOLDER}
+            main.cpp
+            ${SOURCE_FILES}
+            )
+    # Set c++ standard
+    target_compile_features(${FOLDER} INTERFACE cxx_std_17)
+
+    # Add catch2
+    target_include_directories(${FOLDER} PUBLIC
+            ${CMAKE_CURRENT_SOURCE_DIR}/Catch2)
+
+    # Pass flag for big source files for GNU (due to many SECTIONS resulting in assembler errors)
+    if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+        target_compile_options(${FOLDER} PUBLIC "-Wa,-mbig-obj")
+    endif ()
+
+    # Link libraries
+    target_link_libraries(${FOLDER}
+            Rum
+            )
+
+    add_test(NAME ${FOLDER} COMMAND ${FOLDER})
+
 endfunction()
 
 if (ENABLE_UNIT_TESTS)
@@ -23,29 +47,7 @@ if (ENABLE_UNIT_TESTS)
     project(UnitTests C CXX)
 
     # Add Tests
-    add_folder(Window)
-    add_folder(Input)
+    add_unit_test(Window)
+    add_unit_test(Input)
 
-    # Add executable
-    add_executable(${PROJECT_NAME}
-            main.cpp
-            ${SOURCE_FILES}
-            )
-
-    # Set c++ standard
-    target_compile_features(${PROJECT_NAME} INTERFACE cxx_std_17)
-
-    # Add catch2
-    target_include_directories(${PROJECT_NAME} PUBLIC
-            ${CMAKE_CURRENT_SOURCE_DIR}/../Dependencies/Catch2)
-
-    # Pass flag for big source files for GNU (due to many SECTIONS resulting in assembler errors)
-    if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-        target_compile_options(${PROJECT_NAME} PUBLIC "-Wa,-mbig-obj")
-    endif ()
-
-    # Link libraries
-    target_link_libraries(${PROJECT_NAME}
-            Rum
-            )
 endif (ENABLE_UNIT_TESTS)
