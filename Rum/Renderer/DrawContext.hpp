@@ -11,6 +11,7 @@ namespace Rum::Renderer
     public:
         virtual void init() = 0;
         virtual void swapBuffers() = 0;
+        virtual void setSwapInterval(uint8_t interval) = 0;
 
         static std::unique_ptr<DrawContext> create(void* window);
     };

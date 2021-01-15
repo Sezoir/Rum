@@ -51,8 +51,8 @@ namespace Rum::Platform
         // Set context current
         glfwMakeContextCurrent(mWindow.get());
 
-        // Set swap interval @todo: Change to seperate function
-        glfwSwapInterval(1);
+        // Set swap interval
+        mContext->setSwapInterval(1);
 
         // Set the window resize callback
         glfwSetWindowSizeCallback(mWindow.get(), [](GLFWwindow* window, int width, int height) {

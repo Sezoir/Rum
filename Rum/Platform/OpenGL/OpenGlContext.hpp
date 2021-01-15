@@ -14,6 +14,7 @@ namespace Rum::Platform::OpenGL
 
         void init() override;
         void swapBuffers() override;
+        void setSwapInterval(uint8_t interval) override;
 
     private:
         GLFWwindow* mWindow = nullptr;

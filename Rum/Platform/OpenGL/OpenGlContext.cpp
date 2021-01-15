@@ -1,6 +1,4 @@
 #include "OpenGlContext.hpp"
-// External libs
-//#include <glad/glad.h>
 // Project files
 #include "Core/Log.hpp"
 
@@ -27,6 +25,11 @@ namespace Rum::Platform::OpenGL
     void OpenGLContext::swapBuffers()
     {
         glfwSwapBuffers(mWindow);
+    }
+
+    void OpenGLContext::setSwapInterval(uint8_t interval)
+    {
+        glfwSwapInterval(interval);
     }
 
 } // namespace Rum::Platform::OpenGL
