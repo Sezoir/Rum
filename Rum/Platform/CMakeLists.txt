@@ -6,7 +6,9 @@ add_library(Platform
         OpenGL/OpenGlContext.hpp
         OpenGL/OpenGlContext.cpp
         OpenGL/OpenGlRendererApi.hpp
-        OpenGL/OpenGlRendererApi.cpp)
+        OpenGL/OpenGlRendererApi.cpp
+        GLFW/Utility.hpp
+        GLFW/Utility.cpp)
 
 # Add the correct platform/os specific files
 if (${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
