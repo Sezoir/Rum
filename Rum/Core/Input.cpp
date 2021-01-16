@@ -18,6 +18,10 @@ namespace Rum::Core
         }
     }
 
+    // Ignore warning about case value not in enumerated type 'Rum::Events::EventCategory' since we are using
+    // enum to represent seperate bits
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wswitch"
     void Input::onEvent(const Events::Event& event)
     {
         // Get the category of the event, to know how to process it.
@@ -40,6 +44,7 @@ namespace Rum::Core
             }
         }
     }
+#pragma clang diagnostic pop
 
     void Input::handleKeyboardEvent(const Events::Event& event)
     {
