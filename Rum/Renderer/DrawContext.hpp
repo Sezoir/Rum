@@ -9,6 +9,7 @@ namespace Rum::Renderer
     class DrawContext
     {
     public:
+        virtual ~DrawContext() = default;
         virtual void init() = 0;
         virtual void swapBuffers() = 0;
         virtual void setSwapInterval(uint8_t interval) = 0;
