@@ -3,10 +3,12 @@ cmake_minimum_required(VERSION 3.15)
 set(PLATFORM_FILES)
 
 add_library(Platform
-        OpenGL/OpenGlContext.hpp
-        OpenGL/OpenGlContext.cpp
-        OpenGL/OpenGlRendererApi.hpp
-        OpenGL/OpenGlRendererApi.cpp
+        OpenGL/OpenGLContext.hpp
+        OpenGL/OpenGLContext.cpp
+        OpenGL/OpenGLRendererApi.hpp
+        OpenGL/OpenGLRendererApi.cpp
+        OpenGL/OpenGLVertexBuffer.hpp
+        OpenGL/OpenGLVertexBuffer.cpp
         GLFW/Utility.hpp
         GLFW/Utility.cpp)
 

@@ -140,4 +140,20 @@ namespace Rum::Renderer
         uint32_t mBufferSize = 0;
         std::vector<Element> mElements;
     };
+
+    class VertexBuffer
+    {
+    public:
+        virtual void bind() = 0;
+        virtual void unbind() = 0;
+        std::unique_ptr<VertexBuffer> create();
+    };
+
+    class IndexBuffer
+    {
+    public:
+        virtual void bind() = 0;
+        virtual void unbind() = 0;
+        std::unique_ptr<VertexBuffer> create();
+    };
 } // namespace Rum::Renderer
