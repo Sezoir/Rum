@@ -8,7 +8,9 @@ add_library(Renderer
         RendererAPI.hpp
         RendererApi.cpp
         DrawContext.hpp
-        DrawContext.cpp)
+        DrawContext.cpp
+        Buffers.hpp
+        Buffers.cpp)
 
 target_include_directories(Renderer PUBLIC
         ${PROJECT_SOURCE_DIR})

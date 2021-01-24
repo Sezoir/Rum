@@ -49,5 +49,6 @@ if (ENABLE_UNIT_TESTS)
     # Add Tests
     add_unit_test(Window)
     add_unit_test(Input)
+    add_unit_test(Rendering)
 
 endif (ENABLE_UNIT_TESTS)
