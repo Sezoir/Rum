@@ -1,4 +1,4 @@
-#include "OpenGlContext.hpp"
+#include "OpenGLContext.hpp"
 // Project files
 #include "Core/Log.hpp"
 

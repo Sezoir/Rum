@@ -1,4 +1,4 @@
-#include "OpenGlRendererApi.hpp"
+#include "OpenGLRendererApi.hpp"
 // External libs
 #include <glad/glad.h>
 
@@ -25,6 +25,6 @@ namespace Rum::Platform::OpenGL
 
     Renderer::DrawAPI OpenGLRendererAPI::getAPI() const
     {
-        return Renderer::DrawAPI::OpenGl;
+        return Renderer::DrawAPI::OpenGL;
     }
 } // namespace Rum::Platform::OpenGL

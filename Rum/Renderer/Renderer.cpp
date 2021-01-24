@@ -6,7 +6,7 @@ namespace Rum::Renderer
 
     void Renderer::init()
     {
-        mRendererAPI = RendererAPI::create(DrawAPI::OpenGl);
+        mRendererAPI = RendererAPI::create(DrawAPI::OpenGL);
     }
 
     void Renderer::setDrawAPI(const DrawAPI& drawAPI)

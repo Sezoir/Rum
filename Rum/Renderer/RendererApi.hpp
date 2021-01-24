@@ -1,6 +1,7 @@
 #pragma once
 // Std libs
 #include <memory>
+#include <string>
 // External lib
 #include <glm/glm.hpp>
 // Project files
@@ -11,8 +12,19 @@ namespace Rum::Renderer
     enum class DrawAPI
     {
         None,
-        OpenGl
+        OpenGL
     };
+
+    constexpr std::string_view drawApiToString(const DrawAPI drawApi)
+    {
+        switch(drawApi)
+        {
+            case DrawAPI::OpenGL:
+                return "OpenGL";
+            default:
+                return "None";
+        }
+    }
 
     class RendererAPI
     {

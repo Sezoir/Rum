@@ -1,5 +1,5 @@
 #include "RendererApi.hpp"
-#include "Platform/OpenGL/OpenGlRendererApi.hpp"
+#include "Platform/OpenGL/OpenGLRendererApi.hpp"
 
 namespace Rum::Renderer
 {
@@ -7,7 +7,7 @@ namespace Rum::Renderer
     {
         switch(drawApi)
         {
-            case DrawAPI::OpenGl:
+            case DrawAPI::OpenGL:
                 return std::make_unique<Rum::Platform::OpenGL::OpenGLRendererAPI>();
             default:
             {
