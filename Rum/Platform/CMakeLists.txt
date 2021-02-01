@@ -7,8 +7,8 @@ add_library(Platform
         OpenGL/OpenGLContext.cpp
         OpenGL/OpenGLRendererApi.hpp
         OpenGL/OpenGLRendererApi.cpp
-        OpenGL/OpenGLVertexBuffer.hpp
-        OpenGL/OpenGLVertexBuffer.cpp
+        OpenGL/OpenGLBuffers.hpp
+        OpenGL/OpenGLBuffers.cpp
         GLFW/Utility.hpp
         GLFW/Utility.cpp)
 

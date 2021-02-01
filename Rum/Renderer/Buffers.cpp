@@ -1,7 +1,7 @@
 #include "Buffers.hpp"
 #include "Core/Log.hpp"
 #include "Renderer.hpp"
-#include "Platform/OpenGL/OpenGLVertexBuffer.hpp"
+#include "Platform/OpenGL/OpenGLBuffers.hpp"
 
 namespace Rum::Renderer
 {

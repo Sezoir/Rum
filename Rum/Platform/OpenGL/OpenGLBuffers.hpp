@@ -6,12 +6,15 @@ namespace Rum::Platform::OpenGL
     class OpenGLVertexBuffer : public Renderer::VertexBuffer
     {
     public:
-        OpenGLVertexBuffer() = default;
-        ~OpenGLVertexBuffer() = default;
+        OpenGLVertexBuffer(size_t size);
+        OpenGLVertexBuffer(float& vertices, uint64_t memoryType);
+        ~OpenGLVertexBuffer();
 
         void bind() override;
         void unbind() override;
+        void setData(float& vertices);
 
     private:
+        GLuint mBufferID = 0;
     };
 } // namespace Rum::Platform::OpenGL
