@@ -97,8 +97,7 @@ namespace Rum::Renderer
     class ElementLayout
     {
     public:
-        // We want to force the other constructor
-        ElementLayout() = delete;
+        ElementLayout() = default;
 
         ElementLayout(std::initializer_list<Element> list)
             : mElements(list)
@@ -146,7 +145,18 @@ namespace Rum::Renderer
     public:
         virtual void bind() = 0;
         virtual void unbind() = 0;
+        void setLayout(ElementLayout& layout)
+        {
+            mLayout = layout;
+        }
+        const ElementLayout& getLayout() const
+        {
+            return mLayout;
+        }
         std::unique_ptr<VertexBuffer> create();
+
+    protected:
+        ElementLayout mLayout;
     };
 
     class IndexBuffer
