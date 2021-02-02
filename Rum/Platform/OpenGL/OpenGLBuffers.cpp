@@ -37,4 +37,25 @@ namespace Rum::Platform::OpenGL
         glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), &vertices);
     }
 
+    OpenGLIndexBuffer::OpenGLIndexBuffer(float& indices, uint64_t memoryType)
+    {
+        glGenBuffers(1, &mBufferID);
+        bind();
+        glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), &indices, memoryType);
+    }
+
+    OpenGLIndexBuffer::~OpenGLIndexBuffer()
+    {
+        glDeleteBuffers(1, &mBufferID);
+    }
+
+    void OpenGLIndexBuffer::bind()
+    {
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mBufferID);
+    }
+
+    void OpenGLIndexBuffer::unbind()
+    {
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mBufferID);
+    }
 } // namespace Rum::Platform::OpenGL

@@ -153,7 +153,8 @@ namespace Rum::Renderer
         {
             return mLayout;
         }
-        std::unique_ptr<VertexBuffer> create();
+        std::unique_ptr<VertexBuffer> create(size_t size);
+        std::unique_ptr<VertexBuffer> create(float& vertices, uint64_t memoryType);
 
     protected:
         ElementLayout mLayout;
@@ -164,6 +165,6 @@ namespace Rum::Renderer
     public:
         virtual void bind() = 0;
         virtual void unbind() = 0;
-        std::unique_ptr<VertexBuffer> create();
+        std::unique_ptr<IndexBuffer> create(float& vertices, uint64_t memoryType);
     };
 } // namespace Rum::Renderer

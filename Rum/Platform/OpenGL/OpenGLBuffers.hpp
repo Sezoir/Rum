@@ -17,4 +17,18 @@ namespace Rum::Platform::OpenGL
     private:
         GLuint mBufferID = 0;
     };
+
+    class OpenGLIndexBuffer : public Renderer::IndexBuffer
+    {
+    public:
+        OpenGLIndexBuffer(float& vertices, uint64_t memoryType);
+        ~OpenGLIndexBuffer();
+
+        void bind() override;
+        void unbind() override;
+        void setData(float& vertices);
+
+    private:
+        GLuint mBufferID = 0;
+    };
 } // namespace Rum::Platform::OpenGL
