@@ -25,6 +25,13 @@ namespace Rum::Renderer
         Bool
     };
 
+    enum class BufferMemoryType : uint64_t
+    {
+        STREAM_DRAW,
+        STATIC_DRAW,
+        DYNAMIC_DRAW
+    };
+
     static constexpr size_t getShaderDataTypeSize(ShaderDataType type)
     {
         switch(type)
@@ -105,14 +112,14 @@ namespace Rum::Renderer
             calculateOffsets();
         }
 
-        const std::vector<Element>& getElements()
+        const std::vector<Element>& getElements() const
         {
             return mElements;
         }
 
-        uint32_t getSize() const
+        uint32_t getStride() const
         {
-            return mSize;
+            return mStride;
         }
 
         uint32_t getBufferSize() const
@@ -124,18 +131,18 @@ namespace Rum::Renderer
         void calculateOffsets()
         {
             size_t offset = 0;
-            mSize = 0;
+            mStride = 0;
             mBufferSize = 0;
             for(auto& element : mElements)
             {
                 element.mOffset = offset;
                 offset += element.mSize;
-                mSize += element.mSize;
+                mStride += element.mSize;
                 mBufferSize += getShaderDataTypeSize(element.mType) * element.mSize;
             }
         }
 
-        uint32_t mSize = 0;
+        uint32_t mStride = 0;
         uint32_t mBufferSize = 0;
         std::vector<Element> mElements;
     };
@@ -143,18 +150,24 @@ namespace Rum::Renderer
     class VertexBuffer
     {
     public:
+        virtual ~VertexBuffer() = default;
+
         virtual void bind() = 0;
         virtual void unbind() = 0;
+
         void setLayout(ElementLayout& layout)
         {
             mLayout = layout;
         }
+
         const ElementLayout& getLayout() const
         {
             return mLayout;
         }
-        std::unique_ptr<VertexBuffer> create(size_t size);
-        std::unique_ptr<VertexBuffer> create(float& vertices, uint64_t memoryType);
+
+        static std::shared_ptr<VertexBuffer> create(size_t size);
+        static std::shared_ptr<VertexBuffer> create(float& vertices,
+                                                    BufferMemoryType memoryType = BufferMemoryType::STATIC_DRAW);
 
     protected:
         ElementLayout mLayout;
@@ -163,8 +176,12 @@ namespace Rum::Renderer
     class IndexBuffer
     {
     public:
+        virtual ~IndexBuffer() = default;
+
         virtual void bind() = 0;
         virtual void unbind() = 0;
-        std::unique_ptr<IndexBuffer> create(float& vertices, uint64_t memoryType);
+
+        static std::unique_ptr<IndexBuffer> create(uint64_t& indices,
+                                                   BufferMemoryType memoryType = BufferMemoryType::STATIC_DRAW);
     };
 } // namespace Rum::Renderer
