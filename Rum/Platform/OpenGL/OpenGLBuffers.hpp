@@ -16,7 +16,7 @@ namespace Rum::Platform::OpenGL
 
         void bind() override;
         void unbind() override;
-        void setData(float& vertices);
+        void setData(float& vertices) override;
 
     private:
         GLuint mBufferID = 0;

@@ -46,50 +46,68 @@ TEST_CASE("Testing Buffers", "[Renderer][Buffer]")
     {
         SECTION("Vector Creation test")
         {
+            // Create buffer
             std::vector<float> vertices = {-0.5f, -0.5f, 0.0f, 0.5f, -0.5f, 0.0f, 0.0f, 0.5f, 0.0f};
             std::shared_ptr<VertexBuffer> vbo = VertexBuffer::create(*vertices.data());
-            auto openGLVbo = std::static_pointer_cast<OpenGLVertexBuffer>(vbo);
 
-            openGLVbo->bind();
-            openGLVbo->unbind();
-            std::vector<float> subVertices = {0.1, -0.5, 0.5};
-            openGLVbo->setData(*subVertices.data());
+            // Test functions
+            vbo->bind();
+            vbo->unbind();
+            float subVertices[] = {0.1, -0.5, 0.5};
+            vbo->setData(*subVertices);
+
+            // Check we can cast
+            auto openGLVbo = std::static_pointer_cast<OpenGLVertexBuffer>(vbo);
         }
         SECTION("Array Creation test")
         {
+            // Create buffer
             std::array<float, 9> vertices = {-0.5f, -0.5f, 0.0f, 0.5f, -0.5f, 0.0f, 0.0f, 0.5f, 0.0f};
             std::shared_ptr<VertexBuffer> vbo = VertexBuffer::create(*vertices.data());
-            auto openGLVbo = std::static_pointer_cast<OpenGLVertexBuffer>(vbo);
 
-            openGLVbo->bind();
-            openGLVbo->unbind();
-            std::array<float, 3> subVertices = {0.1, -0.5, 0.5};
-            openGLVbo->setData(*subVertices.data());
+            // Test functions
+            vbo->bind();
+            vbo->unbind();
+            float subVertices[] = {0.1, -0.5, 0.5};
+            vbo->setData(*subVertices);
+
+            // Check we can cast
+            auto openGLVbo = std::static_pointer_cast<OpenGLVertexBuffer>(vbo);
         }
         SECTION("Float-array creation test")
         {
+            // Create buffer
             float vertices[] = {-0.5f, -0.5f, 0.0f, 0.5f, -0.5f, 0.0f, 0.0f, 0.5f, 0.0f};
             std::shared_ptr<VertexBuffer> vbo = VertexBuffer::create(*vertices);
-            auto openGLVbo = std::static_pointer_cast<OpenGLVertexBuffer>(vbo);
 
-            openGLVbo->bind();
-            openGLVbo->unbind();
+            // Test functions
+            vbo->bind();
+            vbo->unbind();
             float subVertices[] = {0.1, -0.5, 0.5};
-            openGLVbo->setData(*subVertices);
+            vbo->setData(*subVertices);
+
+            // Check we can cast
+            auto openGLVbo = std::static_pointer_cast<OpenGLVertexBuffer>(vbo);
         }
     }
 
     SECTION("OpenGLIndexBuffer")
     {
+        // Create buffer
         uint64_t indices[] = {0, 1, 3, 1, 2, 3};
         auto ibo = IndexBuffer::create(*indices);
+
+        // Test functions
+        ibo->bind();
+        ibo->unbind();
+
+        // Check we can cast
         auto openGLIbo = std::unique_ptr<OpenGLIndexBuffer>(static_cast<OpenGLIndexBuffer*>(ibo.release()));
-        openGLIbo->bind();
-        openGLIbo->unbind();
     }
 
     SECTION("OpenGLVertexArray")
     {
+        // Create objects for vao
         Element one(ShaderDataType::Float, 3, 0);
         ElementLayout layout({one});
 
@@ -100,12 +118,17 @@ TEST_CASE("Testing Buffers", "[Renderer][Buffer]")
         uint64_t indices[] = {0, 1, 3, 1, 2, 3};
         auto ibo = IndexBuffer::create(*indices);
 
+        // Create vertex array
         std::unique_ptr<VertexArray> vao = VertexArray::create();
-        auto openGLVao = std::unique_ptr<OpenGLVertexArray>(static_cast<OpenGLVertexArray*>(vao.release()));
-        openGLVao->addVertexObject(vbo);
-        openGLVao->setIndexBuffer(ibo);
 
-        openGLVao->bind();
-        openGLVao->unbind();
+        // Test functions
+        vao->addVertexObject(vbo);
+        vao->setIndexBuffer(ibo);
+
+        vao->bind();
+        vao->unbind();
+
+        // Check we can cast
+        auto openGLVao = std::unique_ptr<OpenGLVertexArray>(static_cast<OpenGLVertexArray*>(vao.release()));
     }
 }

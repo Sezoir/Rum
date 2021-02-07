@@ -152,6 +152,7 @@ namespace Rum::Renderer
 
         virtual void bind() = 0;
         virtual void unbind() = 0;
+        virtual void setData(float&) = 0;
 
         void setLayout(ElementLayout& layout)
         {
