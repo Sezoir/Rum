@@ -1,4 +1,5 @@
 #pragma once
+// Project files
 #include "Renderer/Buffers.hpp"
 
 namespace Rum::Platform::OpenGL
@@ -7,7 +8,8 @@ namespace Rum::Platform::OpenGL
     {
     public:
         OpenGLVertexBuffer(size_t size);
-        OpenGLVertexBuffer(float& vertices, uint64_t memoryType);
+        OpenGLVertexBuffer(float& vertices, Renderer::BufferMemoryType memoryType);
+
         ~OpenGLVertexBuffer();
 
         void bind() override;
@@ -21,12 +23,12 @@ namespace Rum::Platform::OpenGL
     class OpenGLIndexBuffer : public Renderer::IndexBuffer
     {
     public:
-        OpenGLIndexBuffer(float& vertices, uint64_t memoryType);
+        OpenGLIndexBuffer(uint64_t& indices, Renderer::BufferMemoryType memoryType);
         ~OpenGLIndexBuffer();
 
         void bind() override;
         void unbind() override;
-        void setData(float& vertices);
+        void setData(uint64_t& indices);
 
     private:
         GLuint mBufferID = 0;

@@ -1,4 +1,6 @@
 #include "OpenGLBuffers.hpp"
+// Project files
+#include "OpenGLUtilities.hpp"
 
 namespace Rum::Platform::OpenGL
 {
@@ -9,11 +11,12 @@ namespace Rum::Platform::OpenGL
         glBufferData(GL_ARRAY_BUFFER, size, nullptr, GL_STATIC_DRAW);
     }
 
-    OpenGLVertexBuffer::OpenGLVertexBuffer(float& vertices, uint64_t memoryType = GL_STATIC_DRAW)
+    OpenGLVertexBuffer::OpenGLVertexBuffer(
+        float& vertices, Renderer::BufferMemoryType memoryType = Renderer::BufferMemoryType::STATIC_DRAW)
     {
         glGenBuffers(1, &mBufferID);
         bind();
-        glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), &vertices, memoryType);
+        glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), &vertices, getGLMemoryType(memoryType));
     }
 
     OpenGLVertexBuffer::~OpenGLVertexBuffer()
@@ -37,11 +40,11 @@ namespace Rum::Platform::OpenGL
         glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), &vertices);
     }
 
-    OpenGLIndexBuffer::OpenGLIndexBuffer(float& indices, uint64_t memoryType)
+    OpenGLIndexBuffer::OpenGLIndexBuffer(uint64_t& indices, Renderer::BufferMemoryType memoryType)
     {
         glGenBuffers(1, &mBufferID);
         bind();
-        glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), &indices, memoryType);
+        glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), &indices, getGLMemoryType(memoryType));
     }
 
     OpenGLIndexBuffer::~OpenGLIndexBuffer()
@@ -57,5 +60,11 @@ namespace Rum::Platform::OpenGL
     void OpenGLIndexBuffer::unbind()
     {
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mBufferID);
+    }
+
+    void OpenGLIndexBuffer::setData(uint64_t& indices)
+    {
+        bind();
+        glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, 0, sizeof(indices), &indices);
     }
 } // namespace Rum::Platform::OpenGL
