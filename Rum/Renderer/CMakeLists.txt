@@ -10,7 +10,9 @@ add_library(Renderer
         DrawContext.hpp
         DrawContext.cpp
         Buffers.hpp
-        Buffers.cpp)
+        Buffers.cpp
+        VertexArray.hpp
+        VertexArray.cpp)
 
 target_include_directories(Renderer PUBLIC
         ${PROJECT_SOURCE_DIR})
