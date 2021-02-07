@@ -1,14 +1,14 @@
 // Std libs
 #include <memory>
-// External libs
-#include <catch.hpp>
-#include <GLFW/glfw3.h>
 // Rum files
 #include <Rum.hpp>
 #include <Renderer/Buffers.hpp>
 #include <Renderer/VertexArray.hpp>
 #include <Platform/OpenGL/OpenGLBuffers.hpp>
 #include <Platform/OpenGL/OpenGLVertexArray.hpp>
+// External libs
+#include <catch.hpp>
+#include <GLFW/glfw3.h>
 
 using namespace Rum::Renderer;
 using namespace Rum::Platform::OpenGL;

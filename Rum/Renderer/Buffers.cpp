@@ -1,5 +1,5 @@
 #include "Buffers.hpp"
-#include "Core/Log.hpp"
+// Project files
 #include "Renderer.hpp"
 #include "Platform/OpenGL/OpenGLBuffers.hpp"
 
