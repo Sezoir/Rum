@@ -2,8 +2,6 @@
 // Std libs
 #include <memory>
 #include <vector>
-// External libs
-#include <glad/glad.h>
 // Project files
 #include "Core/Log.hpp"
 

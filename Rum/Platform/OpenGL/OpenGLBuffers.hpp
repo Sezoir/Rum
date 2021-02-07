@@ -1,4 +1,6 @@
 #pragma once
+// External libs
+#include <glad/glad.h>
 // Project files
 #include "Renderer/Buffers.hpp"
 
