@@ -20,5 +20,8 @@ target_include_directories(Renderer PUBLIC
 target_compile_features(Renderer PRIVATE
         cxx_std_17)
 
+target_compile_definitions(Renderer PUBLIC
+        -DGLFW_INCLUDE_NONE)
+
 target_link_libraries(Renderer PUBLIC
         Dependencies Platform)
