@@ -18,7 +18,6 @@ function(add_unit_test FOLDER)
 
     # Add executable
     add_executable(${FOLDER}
-            main.cpp
             ${SOURCE_FILES}
             )
     # Set c++ standard

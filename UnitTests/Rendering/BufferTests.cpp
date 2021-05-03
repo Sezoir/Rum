@@ -8,7 +8,6 @@
 #include <Platform/OpenGL/OpenGLVertexArray.hpp>
 // External libs
 #include <catch.hpp>
-#include <GLFW/glfw3.h>
 
 using namespace Rum::Renderer;
 using namespace Rum::Platform::OpenGL;
@@ -30,17 +29,6 @@ TEST_CASE("Testing Buffers", "[Renderer][Buffer]")
         // Check offset are correctly set
         REQUIRE(layout.getElements()[1].mOffset == 3);
     }
-
-    // Setup GLFW/OpenGL
-    glfwInit();
-    GLFWwindow* window = glfwCreateWindow(800, 800, "BufferTests", NULL, NULL);
-    glfwMakeContextCurrent(window);
-    if(!gladLoadGLLoader((GLADloadproc) glfwGetProcAddress))
-        RUM_CORE_CRITICAL("GLAD failed to initialise.");
-
-    // Setup renderer
-    Renderer renderer;
-    renderer.setDrawAPI(DrawAPI::OpenGL);
 
     SECTION("OpenGLVertexBuffer")
     {
