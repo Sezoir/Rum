@@ -12,7 +12,9 @@ add_library(Renderer
         Buffers.hpp
         Buffers.cpp
         VertexArray.hpp
-        VertexArray.cpp)
+        VertexArray.cpp
+        Shader.hpp
+        Shader.cpp)
 
 target_include_directories(Renderer PUBLIC
         ${PROJECT_SOURCE_DIR})

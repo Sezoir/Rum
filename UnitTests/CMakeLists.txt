@@ -49,5 +49,7 @@ if (ENABLE_UNIT_TESTS)
     add_unit_test(Window)
     add_unit_test(Input)
     add_unit_test(Rendering)
+    configure_file(Rendering/shader.vert shader.vert COPYONLY)
+    configure_file(Rendering/shader.frag shader.frag COPYONLY)
 
 endif (ENABLE_UNIT_TESTS)
