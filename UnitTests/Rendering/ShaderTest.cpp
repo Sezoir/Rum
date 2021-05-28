@@ -3,7 +3,7 @@
 // Rum files
 #include <Rum.hpp>
 #include <Renderer/Shader.hpp>
-#include <Platform/OpenGL/OpenGlShader.hpp>
+#include <Platform/OpenGL/OpenGLShader.hpp>
 // External libs
 #include <catch.hpp>
 

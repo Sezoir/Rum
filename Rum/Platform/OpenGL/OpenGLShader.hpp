@@ -18,6 +18,14 @@ namespace Rum::Platform::OpenGL
         bool compile(const std::string& vertexCode, const std::string& fragmentCode) override;
         void bind() override;
 
+        void setBool(const std::string& name, const bool& value) override;
+        void setInt(const std::string& name, const int& value) override;
+        void setFloat(const std::string& name, const float& value) override;
+        void setFloat2(const std::string& name, const glm::vec2& value) override;
+        void setFloat3(const std::string& name, const glm::vec3& value) override;
+        void setFloat4(const std::string& name, const glm::vec4& value) override;
+        void setMat4(const std::string& name, const glm::mat4& value) override;
+
     private:
         const std::string mName;
         const std::string mVertexPath;

@@ -13,8 +13,8 @@ add_library(Platform
         OpenGL/OpenGLBuffers.cpp
         OpenGL/OpenGLVertexArray.hpp
         OpenGL/OpenGLVertexArray.cpp
-        OpenGL/OpenGlShader.hpp
-        OpenGL/OpenGlShader.cpp
+        OpenGL/OpenGLShader.hpp
+        OpenGL/OpenGLShader.cpp
         GLFW/Utility.hpp
         GLFW/Utility.cpp)
 

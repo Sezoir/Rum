@@ -1,8 +1,9 @@
-#include "OpenGlShader.hpp"
+#include "OpenGLShader.hpp"
 #include "Core/Log.hpp"
 #include "OpenGLUtilities.hpp"
 #include <sstream>
 #include <fstream>
+#include <glm/gtc/type_ptr.hpp>
 
 namespace Rum::Platform::OpenGL
 {
@@ -110,13 +111,55 @@ namespace Rum::Platform::OpenGL
                 break;
         }
 
-        if(!success)
+        if(success == GL_FALSE)
         {
             char infoLog[512];
             glGetProgramInfoLog(id, 512, NULL, infoLog);
             RUM_CORE_CRITICAL("Error: Shader of type: {} failed in the stage {} with error log:\n {}",
                               getShaderTypeName(shaderType), getCompilationStage(compStage), infoLog);
         }
+    }
+
+    void OpenGLShader::setBool(const std::string& name, const bool& value)
+    {
+        const GLint location = glGetUniformLocation(mShaderID, name.c_str());
+        glUniform1i(location, static_cast<int>(value));
+    }
+
+    void OpenGLShader::setInt(const std::string& name, const int& value)
+    {
+        const GLint location = glGetUniformLocation(mShaderID, name.c_str());
+        glUniform1i(location, value);
+    }
+
+    void OpenGLShader::setFloat(const std::string& name, const float& value)
+    {
+        const GLint location = glGetUniformLocation(mShaderID, name.c_str());
+        glUniform1f(location, value);
+    }
+
+    void OpenGLShader::setFloat2(const std::string& name, const glm::vec2& value)
+    {
+        const GLint location = glGetUniformLocation(mShaderID, name.c_str());
+        glUniform2f(location, value.x, value.y);
+    }
+
+    void OpenGLShader::setFloat3(const std::string& name, const glm::vec3& value)
+    {
+        const GLint location = glGetUniformLocation(mShaderID, name.c_str());
+        glUniform3f(location, value.x, value.y, value.z);
+    }
+
+    void OpenGLShader::setFloat4(const std::string& name, const glm::vec4& value)
+    {
+        const GLint location = glGetUniformLocation(mShaderID, name.c_str());
+        glUniform4f(location, value.x, value.y, value.z, value.w);
+    }
+
+    void OpenGLShader::setMat4(const std::string& name, const glm::mat4& value)
+    {
+        const GLint location = glGetUniformLocation(mShaderID, name.c_str());
+        glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(value));
     }
 
 } // namespace Rum::Platform::OpenGL

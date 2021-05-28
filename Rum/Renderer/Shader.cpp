@@ -2,7 +2,7 @@
 
 // Project files
 #include "Renderer.hpp"
-#include "Platform/OpenGL/OpenGlShader.hpp"
+#include "Platform/OpenGL/OpenGLShader.hpp"
 #include "Core/Log.hpp"
 
 namespace Rum::Renderer
