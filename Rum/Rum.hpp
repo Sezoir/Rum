@@ -11,6 +11,11 @@
 #include "Events/KeyEvent.hpp"
 #include "Events/MouseEvent.hpp"
 
+#include "Renderer/Renderer.hpp"
+#include "Renderer/Shader.hpp"
+#include "Renderer/Buffers.hpp"
+#include "Renderer/VertexArray.hpp"
+
 // Useful typedefs
 typedef Rum::Core::Keyboard::Key Key;
 typedef Rum::Core::Mouse::Button Mouse;
