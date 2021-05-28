@@ -27,4 +27,9 @@ namespace Rum::Platform::OpenGL
     {
         return Renderer::DrawAPI::OpenGL;
     }
+    void OpenGLRendererAPI::drawIndexed(const std::unique_ptr<Renderer::VertexArray>& vertexArray, uint32_t count)
+    {
+        const uint32_t indexCount = count == 0 ? vertexArray->getIndexBuffer()->getCount() : count;
+        glDrawElements(GL_TRIANGLES, indexCount, GL_UNSIGNED_INT, nullptr);
+    }
 } // namespace Rum::Platform::OpenGL

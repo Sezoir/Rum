@@ -19,4 +19,9 @@ namespace Rum::Renderer
         return mRendererAPI->getAPI();
     }
 
+    const std::unique_ptr<RendererAPI>& Renderer::getAPI()
+    {
+        return mRendererAPI;
+    }
+
 } // namespace Rum::Renderer

@@ -10,7 +10,7 @@ namespace Rum::Platform::OpenGL
     {
     public:
         OpenGLVertexBuffer(size_t size);
-        OpenGLVertexBuffer(float& vertices, Renderer::BufferMemoryType memoryType);
+        OpenGLVertexBuffer(float* vertices, size_t size, Renderer::BufferMemoryType memoryType);
 
         ~OpenGLVertexBuffer();
 
@@ -25,14 +25,16 @@ namespace Rum::Platform::OpenGL
     class OpenGLIndexBuffer : public Renderer::IndexBuffer
     {
     public:
-        OpenGLIndexBuffer(uint64_t& indices, Renderer::BufferMemoryType memoryType);
+        OpenGLIndexBuffer(uint32_t* indices, uint32_t count, Renderer::BufferMemoryType memoryType);
         ~OpenGLIndexBuffer();
 
         void bind() override;
         void unbind() override;
-        void setData(uint64_t& indices);
+        uint32_t getCount() const override;
+        void setData(uint32_t& indices);
 
     private:
         GLuint mBufferID = 0;
+        uint32_t mCount;
     };
 } // namespace Rum::Platform::OpenGL

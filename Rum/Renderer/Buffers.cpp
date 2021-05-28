@@ -18,26 +18,26 @@ namespace Rum::Renderer
         }
     }
 
-    std::shared_ptr<VertexBuffer> VertexBuffer::create(float& vertices, BufferMemoryType memoryType)
+    std::shared_ptr<VertexBuffer> VertexBuffer::create(float* vertices, size_t size, BufferMemoryType memoryType)
     {
         const DrawAPI api = Renderer::getDrawAPI();
         switch(api)
         {
             case DrawAPI::OpenGL:
-                return std::make_shared<Platform::OpenGL::OpenGLVertexBuffer>(vertices, memoryType);
+                return std::make_shared<Platform::OpenGL::OpenGLVertexBuffer>(vertices, size, memoryType);
             default:
                 RUM_CORE_ERROR("VertexBuffer not supported for current draw API: %s", drawApiToString(api));
                 return nullptr;
         }
     }
 
-    std::unique_ptr<IndexBuffer> IndexBuffer::create(uint64_t& indices, BufferMemoryType memoryType)
+    std::unique_ptr<IndexBuffer> IndexBuffer::create(uint32_t* indices, uint32_t count, BufferMemoryType memoryType)
     {
         const DrawAPI api = Renderer::getDrawAPI();
         switch(api)
         {
             case DrawAPI::OpenGL:
-                return std::make_unique<Platform::OpenGL::OpenGLIndexBuffer>(indices, memoryType);
+                return std::make_unique<Platform::OpenGL::OpenGLIndexBuffer>(indices, count, memoryType);
             default:
                 RUM_CORE_ERROR("VertexBuffer not supported for current draw API: %s", drawApiToString(api));
                 return nullptr;

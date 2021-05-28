@@ -18,12 +18,12 @@ namespace Rum::Platform::OpenGL
 
         void bind() const override;
         void unbind() const override;
-        void addVertexObject(std::shared_ptr<Renderer::VertexBuffer>& vbo) override;
-        void setIndexBuffer(std::unique_ptr<Renderer::IndexBuffer>& ebo) override;
+        void addVertexObject(std::shared_ptr<Renderer::VertexBuffer> vbo) override;
+        void setIndexBuffer(std::unique_ptr<Renderer::IndexBuffer> ebo) override;
 
         const Renderer::VertexBuffer& getVertexBuffer(uint32_t index) const override;
         const std::vector<std::shared_ptr<Renderer::VertexBuffer>>& getVertexBuffers() const override;
-        const Renderer::IndexBuffer& getIndexBuffer() const override;
+        const std::unique_ptr<Renderer::IndexBuffer>& getIndexBuffer() const override;
 
     private:
         GLuint mBufferID = 0;

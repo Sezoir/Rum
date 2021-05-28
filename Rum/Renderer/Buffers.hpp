@@ -60,8 +60,24 @@ namespace Rum::Renderer
 
     struct Element
     {
+        ShaderDataType mType;
+        std::string mName;
+        uint32_t mSize = 0;
+        size_t mOffset = 0;
+        bool mNormalise = false;
+
+        Element(ShaderDataType type, const std::string& name, bool normalise = false)
+            : mType(type)
+            , mName(name)
+            , mSize(getShaderDataTypeSize(type))
+            , mOffset(0)
+            , mNormalise(normalise)
+        {
+        }
+
         Element(ShaderDataType type, uint32_t size, size_t offset, bool normalise = false)
             : mType(type)
+            , mName("")
             , mSize(size)
             , mOffset(offset)
             , mNormalise(normalise)
@@ -92,11 +108,6 @@ namespace Rum::Renderer
                     return 0;
             }
         }
-
-        ShaderDataType mType = ShaderDataType::None;
-        uint32_t mSize = 0;
-        size_t mOffset = 0;
-        bool mNormalise = false;
     };
 
     class ElementLayout
@@ -165,7 +176,7 @@ namespace Rum::Renderer
         }
 
         static std::shared_ptr<VertexBuffer> create(size_t size);
-        static std::shared_ptr<VertexBuffer> create(float& vertices,
+        static std::shared_ptr<VertexBuffer> create(float* vertices, size_t size,
                                                     BufferMemoryType memoryType = BufferMemoryType::STATIC_DRAW);
 
     protected:
@@ -179,8 +190,9 @@ namespace Rum::Renderer
 
         virtual void bind() = 0;
         virtual void unbind() = 0;
+        virtual uint32_t getCount() const = 0;
 
-        static std::unique_ptr<IndexBuffer> create(uint64_t& indices,
+        static std::unique_ptr<IndexBuffer> create(uint32_t* indices, uint32_t count,
                                                    BufferMemoryType memoryType = BufferMemoryType::STATIC_DRAW);
     };
 } // namespace Rum::Renderer

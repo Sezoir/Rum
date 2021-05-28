@@ -24,22 +24,22 @@ namespace Rum::Platform::OpenGL
 
     void OpenGLVertexArray::unbind() const
     {
-        glBindVertexArray(mBufferID);
+        glBindVertexArray(0);
     }
 
-    void OpenGLVertexArray::addVertexObject(std::shared_ptr<Renderer::VertexBuffer>& vbo)
+    void OpenGLVertexArray::addVertexObject(std::shared_ptr<Renderer::VertexBuffer> vbo)
     {
         // Bind VAO/VBO
-        bind();
+        OpenGLVertexArray::bind();
         vbo->bind();
 
         // Setup properties
         const Renderer::ElementLayout& layout = vbo->getLayout();
         for(auto element : layout.getElements())
         {
+            glVertexAttribPointer(mVertexObjectCount, element.getComponentCount(), getGLShaderType(element.mType),
+                                  element.mNormalise, layout.getStride(), (void*) element.mOffset);
             glEnableVertexAttribArray(mVertexObjectCount);
-            glVertexAttribPointer(mVertexObjectCount, element.mSize, getGLShaderType(element.mType), element.mNormalise,
-                                  layout.getStride(), (void*) element.mOffset);
 
             mVertexObjectCount++;
         }
@@ -48,7 +48,7 @@ namespace Rum::Platform::OpenGL
         mVertexBuffers.push_back(std::move(vbo));
     }
 
-    void OpenGLVertexArray::setIndexBuffer(std::unique_ptr<Renderer::IndexBuffer>& ebo)
+    void OpenGLVertexArray::setIndexBuffer(std::unique_ptr<Renderer::IndexBuffer> ebo)
     {
         mIndexBuffer = std::move(ebo);
     }
@@ -63,9 +63,9 @@ namespace Rum::Platform::OpenGL
         return mVertexBuffers;
     }
 
-    const Renderer::IndexBuffer& OpenGLVertexArray::getIndexBuffer() const
+    const std::unique_ptr<Renderer::IndexBuffer>& OpenGLVertexArray::getIndexBuffer() const
     {
-        return *mIndexBuffer;
+        return mIndexBuffer;
     }
 
 } // namespace Rum::Platform::OpenGL

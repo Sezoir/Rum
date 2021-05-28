@@ -12,6 +12,7 @@ namespace Rum::Renderer
         static void init();
         static void setDrawAPI(const DrawAPI& drawAPI);
         static const DrawAPI getDrawAPI();
+        static const std::unique_ptr<RendererAPI>& getAPI();
 
     private:
         static std::unique_ptr<RendererAPI> mRendererAPI;
