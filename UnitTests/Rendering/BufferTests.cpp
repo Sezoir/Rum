@@ -82,8 +82,8 @@ TEST_CASE("Testing Buffers", "[Renderer][Buffer]")
     SECTION("OpenGLIndexBuffer")
     {
         // Create buffer
-        uint64_t indices[] = {0, 1, 3, 1, 2, 3};
-        auto ibo = IndexBuffer::create(*indices);
+        uint32_t indices[] = {0, 1, 3, 1, 2, 3};
+        auto ibo = IndexBuffer::create(indices, sizeof(indices) / sizeof(*indices));
 
         // Test functions
         ibo->bind();
@@ -103,15 +103,15 @@ TEST_CASE("Testing Buffers", "[Renderer][Buffer]")
         std::shared_ptr<VertexBuffer> vbo = VertexBuffer::create(*vertices);
         vbo->setLayout(layout);
 
-        uint64_t indices[] = {0, 1, 3, 1, 2, 3};
-        auto ibo = IndexBuffer::create(*indices);
+        uint32_t indices[] = {0, 1, 3, 1, 2, 3};
+        auto ibo = IndexBuffer::create(indices, sizeof(indices) / sizeof(*indices));
 
         // Create vertex array
         std::unique_ptr<VertexArray> vao = VertexArray::create();
 
         // Test functions
         vao->addVertexObject(vbo);
-        vao->setIndexBuffer(ibo);
+        vao->setIndexBuffer(std::move(ibo));
 
         vao->bind();
         vao->unbind();
