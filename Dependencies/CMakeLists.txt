@@ -26,9 +26,12 @@ find_package(GLFW MODULE)
 # Include glm
 find_package(GLM MODULE)
 
+# Include stb
+find_package(STB MODULE)
+
 # Link all libraries
 target_link_libraries(${PROJECT_NAME} INTERFACE
-        ${OPENGL_gl_LIBRARY} glad glfw Spdlog glm::glm)
+        ${OPENGL_gl_LIBRARY} glad glfw Spdlog glm::glm stb)
 
 
 #target_link_libraries(${PROJECT_NAME} INTERFACE
