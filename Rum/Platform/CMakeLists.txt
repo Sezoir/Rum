@@ -15,6 +15,8 @@ add_library(Platform
         OpenGL/OpenGLVertexArray.cpp
         OpenGL/OpenGLShader.hpp
         OpenGL/OpenGLShader.cpp
+        OpenGL/OpenGLTexture2D.hpp
+        OpenGL/OpenGLTexture2D.cpp
         GLFW/Utility.hpp
         GLFW/Utility.cpp)
 

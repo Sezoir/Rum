@@ -15,6 +15,7 @@
 #include "Renderer/Shader.hpp"
 #include "Renderer/Buffers.hpp"
 #include "Renderer/VertexArray.hpp"
+#include "Renderer/Texture.hpp"
 
 // Useful typedefs
 typedef Rum::Core::Keyboard::Key Key;

@@ -14,7 +14,9 @@ add_library(Renderer
         VertexArray.hpp
         VertexArray.cpp
         Shader.hpp
-        Shader.cpp)
+        Shader.cpp
+        Texture.hpp
+        Texture.cpp)
 
 target_include_directories(Renderer PUBLIC
         ${PROJECT_SOURCE_DIR})
