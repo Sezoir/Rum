@@ -10,6 +10,7 @@ add_library(Core
         KeyCodes.hpp
         Input.hpp
         Input.cpp
+        Assert.hpp
         )
 
 target_compile_features(Core PRIVATE
