@@ -56,6 +56,13 @@ namespace Rum::Platform::OpenGL
 
     void OpenGLShader::bind()
     {
+        if(!mTextures.empty())
+        {
+            for(auto& it : mTextures)
+            {
+                it.second->bind(it.first);
+            }
+        }
         glUseProgram(mShaderID);
     }
 
@@ -160,6 +167,22 @@ namespace Rum::Platform::OpenGL
     {
         const GLint location = glGetUniformLocation(mShaderID, name.c_str());
         glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(value));
+    }
+
+    void OpenGLShader::setTexture(const std::string& name, const std::shared_ptr<Rum::Renderer::Texture2D> value)
+    {
+        int maxTextureUnits;
+        glGetIntegerv(GL_MAX_TEXTURE_IMAGE_UNITS, &maxTextureUnits);
+        if(mTextures.size() <= GL_MAX_TEXTURE_IMAGE_UNITS)
+        {
+            const uint8_t textureUnit = mTextures.size();
+            setInt(name, textureUnit);
+            mTextures.emplace(textureUnit, std::move(value));
+        }
+        else
+        {
+            RUM_CORE_ERROR("Maximum number of texture units reached!");
+        }
     }
 
 } // namespace Rum::Platform::OpenGL

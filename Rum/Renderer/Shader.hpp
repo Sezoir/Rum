@@ -4,6 +4,8 @@
 #include <string>
 // External libs
 #include <glm/glm.hpp>
+// Project files
+#include "Texture.hpp"
 
 namespace Rum::Renderer
 {
@@ -40,6 +42,7 @@ namespace Rum::Renderer
         virtual void setFloat3(const std::string& name, const glm::vec3& value) = 0;
         virtual void setFloat4(const std::string& name, const glm::vec4& value) = 0;
         virtual void setMat4(const std::string& name, const glm::mat4& value) = 0;
+        virtual void setTexture(const std::string& name, const std::shared_ptr<Rum::Renderer::Texture2D> value) = 0;
 
         static std::unique_ptr<Shader> create(std::string name, std::string vertexPath, std::string fragPath);
 

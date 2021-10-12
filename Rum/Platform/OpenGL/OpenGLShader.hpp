@@ -1,4 +1,6 @@
 #pragma once
+// Std libs
+#include <unordered_map>
 // External libs
 #include <glad/glad.h>
 // Project files
@@ -25,12 +27,14 @@ namespace Rum::Platform::OpenGL
         void setFloat3(const std::string& name, const glm::vec3& value) override;
         void setFloat4(const std::string& name, const glm::vec4& value) override;
         void setMat4(const std::string& name, const glm::mat4& value) override;
+        void setTexture(const std::string& name, const std::shared_ptr<Rum::Renderer::Texture2D> value) override;
 
     private:
         const std::string mName;
         const std::string mVertexPath;
         const std::string mFragPath;
         GLuint mShaderID = 0;
+        std::unordered_map<uint8_t /*textureUnit*/, std::shared_ptr<Rum::Renderer::Texture2D>> mTextures;
         void createShaderProgram(const std::string& vertexCode, const std::string& fragCode);
         GLuint createShader(const std::string& shaderCode, ShaderType type);
         void checkForCompileErrors(GLuint id, CompilationStage compStage, ShaderType shaderType);

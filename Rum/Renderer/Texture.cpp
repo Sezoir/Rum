@@ -6,13 +6,13 @@
 
 namespace Rum::Renderer
 {
-    std::unique_ptr<Texture2D> Texture2D::create(uint32_t width, uint32_t height)
+    std::shared_ptr<Texture2D> Texture2D::create(uint32_t width, uint32_t height)
     {
         const DrawAPI api = Renderer::getDrawAPI();
         switch(api)
         {
             case DrawAPI::OpenGL:
-                return std::make_unique<Platform::OpenGL::OpenGLTexture2D>(width, height);
+                return std::make_shared<Platform::OpenGL::OpenGLTexture2D>(width, height);
             default:
             {
                 RUM_CORE_ERROR("No platform shader found for selected drawAPI.");
@@ -21,13 +21,13 @@ namespace Rum::Renderer
         }
     }
 
-    std::unique_ptr<Texture2D> Texture2D::create(std::string path)
+    std::shared_ptr<Texture2D> Texture2D::create(std::string path)
     {
         const DrawAPI api = Renderer::getDrawAPI();
         switch(api)
         {
             case DrawAPI::OpenGL:
-                return std::make_unique<Platform::OpenGL::OpenGLTexture2D>(path);
+                return std::make_shared<Platform::OpenGL::OpenGLTexture2D>(path);
             default:
             {
                 RUM_CORE_ERROR("No platform shader found for selected drawAPI.");

@@ -25,7 +25,7 @@ namespace Rum::Renderer
     class Texture2D : public Texture
     {
     public:
-        static std::unique_ptr<Texture2D> create(uint32_t width, uint32_t height);
-        static std::unique_ptr<Texture2D> create(std::string path);
+        static std::shared_ptr<Texture2D> create(uint32_t width, uint32_t height);
+        static std::shared_ptr<Texture2D> create(std::string path);
     };
 } // namespace Rum::Renderer
