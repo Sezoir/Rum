@@ -13,5 +13,5 @@ option(ENABLE_EXAMPLES "Enables all examples." OFF)
 #########################################################
 
 if (ENABLE_EXAMPLES)
-    add_subdirectory(BasicTriangle)
+    add_subdirectory(BasicRectangle)
 endif (ENABLE_EXAMPLES)

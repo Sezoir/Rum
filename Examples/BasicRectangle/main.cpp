@@ -8,24 +8,23 @@ int main()
 
     Application app;
 
-    auto shader = Shader::create("triangle", "shader.vert", "shader.frag");
-    shader->compile();
-
-    float vertices[] = {0.5f,  0.5f,  0.0f, // top right
-                        0.5f,  -0.5f, 0.0f, // bottom right
-                        -0.5f, -0.5f, 0.0f, // bottom left
-                        -0.5f, 0.5f,  0.0f, // top left
-                        0.0f,  0.8f,  0.0f};
+    float vertices[] = {
+        // positions        // texture coords
+        0.5f,  0.5f,  0.0f, 1.0f, 1.0f, // top right
+        0.5f,  -0.5f, 0.0f, 1.0f, 0.0f, // bottom right
+        -0.5f, -0.5f, 0.0f, 0.0f, 0.0f, // bottom left
+        -0.5f, 0.5f,  0.0f, 0.0f, 1.0f  // top left
+    };
     uint32_t indices[] = {
-        0, 1, 3, // first Triangle
-        4, 2, 3  // second Triangle
+        0, 1, 3, // first triangle
+        1, 2, 3  // second triangle
     };
 
     auto vertexArray = VertexArray::create();
     vertexArray->bind();
 
     auto vertexBuffer = VertexBuffer::create(vertices, sizeof(vertices), BufferMemoryType::STATIC_DRAW);
-    ElementLayout layout = {{ShaderDataType::Float3, "position"}};
+    ElementLayout layout = {{ShaderDataType::Float3, "position"}, {ShaderDataType::Float2, "texture"}};
     vertexBuffer->setLayout(layout);
     vertexBuffer->bind();
 
@@ -35,11 +34,16 @@ int main()
 
     vertexArray->addVertexObject(vertexBuffer);
     vertexArray->setIndexBuffer(std::move(indicesBuffer));
-
     vertexArray->unbind();
 
-    auto& window = app.getWindow();
+    auto texture = Rum::Renderer::Texture2D::create("texture.jpg");
+    auto shader = Shader::create("triangle", "shader.vert", "shader.frag");
+    shader->compile();
+    shader->bind();
+    shader->setTexture("texture1", texture);
+    shader->unbind();
 
+    auto& window = app.getWindow();
     while(window.isOpen())
     {
         window.pollInput();
@@ -48,7 +52,6 @@ int main()
         Renderer::getAPI()->clear();
 
         shader->bind();
-
         vertexArray->bind();
         Renderer::getAPI()->drawIndexed(vertexArray);
 

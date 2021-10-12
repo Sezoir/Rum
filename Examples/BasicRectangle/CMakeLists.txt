@@ -1,7 +1,7 @@
 ## Set minimum cmake
 cmake_minimum_required(VERSION 3.15)
 
-project(BasicTriangle)
+project(BasicRectangle)
 
 # Get all source files
 file(GLOB_RECURSE SOURCE_FILES CONFIGURE_DEPENDS *.cpp *.c)
@@ -29,3 +29,4 @@ target_link_libraries(${PROJECT_NAME}
 
 configure_file(shader.vert shader.vert COPYONLY)
 configure_file(shader.frag shader.frag COPYONLY)
+configure_file(texture.jpg texture.jpg COPYONLY)
