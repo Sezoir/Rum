@@ -74,7 +74,7 @@ namespace std
 inline void RUM_CORE_ASSERT(bool check, std::string message = "",
                             const std::source_location location = std::source_location::current())
 {
-    if(check)
+    if(!check)
         RUM_CORE_ERROR("{}({}:{}) '{}': Failed assertion with message: {}", location.file_name(), location.line(),
                        location.column(), location.function_name(), message);
 }
@@ -82,7 +82,7 @@ inline void RUM_CORE_ASSERT(bool check, std::string message = "",
 inline void RUM_ASSERT(bool check, std::string message = "",
                        const std::source_location location = std::source_location::current())
 {
-    if(check)
+    if(!check)
         RUM_ERROR("{}({}:{}) '{}': Failed assertion with message: {}", location.file_name(), location.line(),
                   location.column(), location.function_name(), message);
 }

@@ -35,13 +35,13 @@ namespace Rum::Platform::OpenGL
         {
             file = std::filesystem::canonical(file);
         }
-        RUM_CORE_ASSERT(!std::filesystem::exists(file), "Path to texture \"" + path + "\" does not exist.");
+        RUM_CORE_ASSERT(std::filesystem::exists(file), "Path to texture \"" + path + "\" does not exist.");
 
         int width, height, channels;
         stbi_set_flip_vertically_on_load(true);
         stbi_uc* data;
         data = stbi_load(file.string().c_str(), &width, &height, &channels, 0);
-        RUM_CORE_ASSERT(data == nullptr, "Failed to load texture.");
+        RUM_CORE_ASSERT(data != nullptr, "Failed to load texture.");
 
         mWidth = width;
         mHeight = height;
@@ -56,7 +56,7 @@ namespace Rum::Platform::OpenGL
             internalFormat = GL_RGBA;
             sizedInternalFormat = GL_RGBA8;
         }
-        RUM_CORE_ASSERT(internalFormat == 0 || sizedInternalFormat == 0, "Unsupported number of channels.");
+        RUM_CORE_ASSERT(internalFormat != 0 || sizedInternalFormat == 0, "Unsupported number of channels.");
 
         glGenTextures(1, &mBufferID);
 
