@@ -17,9 +17,6 @@ find_package(GLAD MODULE)
 # Include spdlog
 find_package(Spdlog MODULE)
 
-# Include SFML
-#find_package(SFML MODULE)
-
 # Include glfw
 find_package(GLFW MODULE)
 
@@ -35,8 +32,3 @@ find_package(EnTT MODULE)
 # Link all libraries
 target_link_libraries(${PROJECT_NAME} INTERFACE
         ${OPENGL_gl_LIBRARY} glad glfw Spdlog glm::glm stb EnTT::EnTT)
-
-
-#target_link_libraries(${PROJECT_NAME} INTERFACE
-#        sfml-system sfml-window sfml-graphics sfml-audio
-#        Spdlog glm::glm)
