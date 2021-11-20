@@ -2,9 +2,13 @@ cmake_minimum_required(VERSION 3.15)
 
 project(ROOT)
 
-enable_testing()
+option(ENABLE_ASSERTS "Enable assert checks" ON)
+option(ENABLE_TESTS "Build unit tests" ON)
+option(ENABLE_EXAMPLES "Build examples" ON)
 
-set(ENABLE_EXAMPLES ON)
+if (ENABLE_TESTS STREQUAL ON)
+    enable_testing()
+endif ()
 
 add_subdirectory(Dependencies)
 
