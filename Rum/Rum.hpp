@@ -17,6 +17,9 @@
 #include "Renderer/VertexArray.hpp"
 #include "Renderer/Texture.hpp"
 
+#include "Scene/Scene.hpp"
+#include "Scene/Entity.hpp"
+
 // Useful typedefs
 typedef Rum::Core::Keyboard::Key Key;
 typedef Rum::Core::Mouse::Button Mouse;
