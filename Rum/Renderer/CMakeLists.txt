@@ -1,7 +1,5 @@
 cmake_minimum_required(VERSION 3.15)
 
-set(PLATFORM_FILES)
-
 add_library(Renderer
         Renderer.hpp
         Renderer.cpp
