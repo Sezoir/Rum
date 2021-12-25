@@ -7,3 +7,7 @@
 [submodule "Dependencies/entt/entt-3.9.0"]
 	path = Dependencies/entt/entt-3.9.0
 	url = https://github.com/skypjack/entt.git
+[submodule "Dependencies/glfw/glfw-3.3.7"]
+	path = Dependencies/glfw/glfw-3.3.7
+	url = https://github.com/glfw/glfw.git
+	branch = 3.3-stable
