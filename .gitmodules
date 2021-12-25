@@ -4,3 +4,6 @@
 [submodule "Dependencies/GLM"]
 	path = Dependencies/GLM
 	url = https://github.com/g-truc/glm.git
+[submodule "Dependencies/entt/entt-3.9.0"]
+	path = Dependencies/entt/entt-3.9.0
+	url = https://github.com/skypjack/entt.git
