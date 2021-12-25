@@ -20,13 +20,13 @@ TEST_CASE("Testing Entity creation", "[Scene]")
 
     SECTION("Testing entity creation")
     {
-        Entity& entity = scene.createEntity();
+        auto entity = scene.createEntity();
     }
 
     SECTION("Testing entity creation with component")
     {
-        Entity& entity = scene.createEntity();
-        entity.addComponent<Position>(1, 2, 3);
-        REQUIRE(entity.getComponent<Position>() == Position{1, 2, 3});
+        auto entity = scene.createEntity();
+        entity->addComponent<Position>(1, 2, 3);
+        REQUIRE(entity->getComponent<Position>() == Position{1, 2, 3});
     }
 }

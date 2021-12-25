@@ -1,9 +1,11 @@
 #pragma once
 // Std libs
 #include <vector>
-
+#include <memory>
 // External libs
 #include <entt/entt.hpp>
+// Project files
+#include "RObject.hpp"
 
 namespace Rum::Scene
 {
@@ -15,12 +17,16 @@ namespace Rum::Scene
         Scene() = default;
         ~Scene() = default;
 
-        Entity& createEntity();
+        std::unique_ptr<Entity> createEntity();
+        void registerObject(std::shared_ptr<RObject> drawable);
+
+        void onUpdate(const TimeStep& timestep);
+        void onDraw();
 
     private:
         friend class Entity;
 
         entt::registry mRegistry;
-        std::vector<Entity> mEntities;
+        std::vector<std::shared_ptr<RObject>> mObjects;
     };
 } // namespace Rum::Scene

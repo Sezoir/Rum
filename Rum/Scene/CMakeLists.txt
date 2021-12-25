@@ -4,7 +4,9 @@ add_library(Scene
         Scene.hpp
         Scene.cpp
         Entity.hpp
-        Entity.cpp)
+        Entity.cpp
+        SceneManager.hpp
+        SceneManager.cpp)
 
 target_include_directories(Scene PUBLIC
         ${PROJECT_SOURCE_DIR})
