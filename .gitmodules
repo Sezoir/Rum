@@ -1,8 +1,8 @@
 [submodule "Dependencies/Spdlog"]
-	path = Dependencies/Spdlog
+	path = Dependencies/spdlog/spdlog-1.8.1
 	url = https://github.com/gabime/spdlog.git
 [submodule "Dependencies/GLM"]
-	path = Dependencies/GLM
+	path = Dependencies/glm/glm-0.9.9.9
 	url = https://github.com/g-truc/glm.git
 [submodule "Dependencies/entt/entt-3.9.0"]
 	path = Dependencies/entt/entt-3.9.0
