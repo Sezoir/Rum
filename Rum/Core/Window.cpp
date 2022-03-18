@@ -21,9 +21,7 @@ namespace Rum::Core
         /********************************************************************
          * Unsupported platform
          ********************************************************************/
-
-        RUM_CORE_CRITICAL("Target platform is not supported!")
-        return nullptr;
+        assert(false && "Target platform is not supported!");
 #endif
     }
 
