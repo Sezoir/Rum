@@ -19,7 +19,7 @@ add_library(Platform
         GLFW/Utility.cpp)
 
 # Add the correct platform/os specific files
-if (${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
+if (${RUM_PLATFORM_TARGET} STREQUAL "Windows")
     target_sources(Platform PUBLIC
             Windows/WindowsWindow.hpp
             Windows/WindowsWindow.cpp)

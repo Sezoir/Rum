@@ -23,6 +23,12 @@ if (ENABLE_TESTS STREQUAL ON)
     enable_testing()
 endif ()
 
+# Set project cmake folder
+list(APPEND CMAKE_PREFIX_PATH ${CMAKE_SOURCE_DIR})
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/CMake)
+
+find_package(Platform)
+
 add_subdirectory(Dependencies)
 
 add_subdirectory(Rum)
