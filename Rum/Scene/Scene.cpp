@@ -7,10 +7,20 @@ namespace Rum::Scene
     {
         return std::make_unique<Entity>(*this, mRegistry.create());
     }
+
     void Scene::registerObject(std::shared_ptr<RObject> object)
     {
         mObjects.push_back(object);
     }
+
+    void Scene::onUpdate(const TimeStep& timestep)
+    {
+        for(auto& object : mObjects)
+        {
+            object->update(timestep);
+        }
+    }
+
     void Scene::onDraw()
     {
         for(auto& object : mObjects)
@@ -19,11 +29,19 @@ namespace Rum::Scene
         }
     }
 
-    void Scene::onUpdate(const TimeStep& timestep)
+    void Scene::load()
     {
         for(auto& object : mObjects)
         {
-            object->update(timestep);
+            object->load();
+        }
+    }
+
+    void Scene::unload()
+    {
+        for(auto& object : mObjects)
+        {
+            object->unload();
         }
     }
 } // namespace Rum::Scene

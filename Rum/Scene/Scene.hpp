@@ -11,17 +11,27 @@ namespace Rum::Scene
 {
     class Entity;
 
+    /**
+     * A `Scene` describing some viewpoint or a grouped set of objects representing a view.
+     * Examples can include: main menu screen; game world; hud gui.
+     */
     class Scene
     {
     public:
-        Scene() = default;
+        Scene()
+            : mRegistry()
+        {
+        }
         ~Scene() = default;
 
         std::unique_ptr<Entity> createEntity();
         void registerObject(std::shared_ptr<RObject> drawable);
 
-        void onUpdate(const TimeStep& timestep);
+        void onUpdate(const Core::TimeStep& timestep);
         void onDraw();
+
+        void load();
+        void unload();
 
     private:
         friend class Entity;
