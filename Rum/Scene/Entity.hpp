@@ -7,6 +7,10 @@
 
 namespace Rum::Scene
 {
+    /**
+     * Used to store properties of some object. For example: position; rotation, etc
+     * Useful for when you want to iterate through just some shared property of several objects in a `Scene`.
+     */
     class Entity
     {
     public:
