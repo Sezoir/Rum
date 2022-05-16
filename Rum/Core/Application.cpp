@@ -42,23 +42,25 @@ namespace Rum::Core
         RUM_ERROR("Error");
         RUM_CRITICAL("Critical");
 
+        mTimePoint = std::chrono::system_clock::now();
         // Infinite loop while window is open
         while(mWindow->isOpen())
         {
             // Process Input
             mWindow->pollInput();
 
-            // Update game
-            if(Application::getInstance().getInput().isKeyPressed(Keyboard::Key::A))
-                RUM_CORE_INFO(true);
+            // Calculate time step
+            TimeStep timeStep = std::chrono::duration_cast<TimeStep>(std::chrono::system_clock::now() - mTimePoint);
 
-            if(Application::getInstance().getInput().isMousePressed(Mouse::Button::Button0))
-                RUM_CORE_INFO(true);
+            // Update game
+            mWindow->update();
+            mSceneManager.onUpdate(timeStep);
 
             // Render game
-            mWindow->update();
+            mSceneManager.onDraw();
         }
     }
+
     Application& Application::getInstance()
     {
         return *mEngine;
@@ -68,9 +70,15 @@ namespace Rum::Core
     {
         return mInput;
     }
+
     Window& Application::getWindow()
     {
         return *mWindow;
+    }
+
+    Scene::SceneManager& Application::getSceneManager()
+    {
+        return mSceneManager;
     }
 
 } // namespace Rum::Core

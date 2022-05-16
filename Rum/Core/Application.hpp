@@ -4,10 +4,13 @@
 // Project files
 #include "Window.hpp"
 #include "Input.hpp"
+#include "Types.hpp"
 #include "Renderer/Renderer.hpp"
+#include "Scene/SceneManager.hpp"
 
 namespace Rum::Core
 {
+
     class Application
     {
     public:
@@ -45,9 +48,17 @@ namespace Rum::Core
          */
         Window& getWindow();
 
+        /**
+         * @brief Retrieves a reference to the scene manager for easy access.
+         * @return SceneManager&: A reference to the singleton SceneManager class.
+         */
+        Scene::SceneManager& getSceneManager();
+
     private:
         std::unique_ptr<Window> mWindow = nullptr;
         Input mInput;
+        Scene::SceneManager mSceneManager;
+        TimePoint mTimePoint;
 
         // Pointer to itself, for use of getInstance function
         static Application* mEngine;
