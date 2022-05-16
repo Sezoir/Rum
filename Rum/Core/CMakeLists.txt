@@ -11,6 +11,7 @@ add_library(Core
         Input.hpp
         Input.cpp
         Assert.hpp
+        Types.hpp
         )
 
 target_compile_features(Core PRIVATE
