@@ -10,15 +10,15 @@ namespace Rum::Scene
     /**
      * A base parent class for all objects that wish to interact with the `Scene`.
      * This class should never be initialised by itself, but instead be inherited.
+     * Inheriting this also gives access to the event system through the `Observer` class.
      */
-    class RObject
+    class RObject : public Rum::Events::Observer
     {
     public:
         virtual void update(const Core::TimeStep& timestep){};
         virtual void draw(){};
         virtual void load(){};
         virtual void unload(){};
-        virtual void onEvent(const Events::Event& event){};
 
     private:
         RObject(){};

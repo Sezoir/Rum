@@ -6,13 +6,13 @@
 // Project files
 #include "KeyCodes.hpp"
 #include "MouseCodes.hpp"
-#include "RObject.hpp"
+#include "Events/Event.hpp"
 #include "Events/KeyEvent.hpp"
 #include "Window.hpp"
 
 namespace Rum::Core
 {
-    class Input : private RObject
+    class Input : private Rum::Events::Observer
     {
     public:
         /**

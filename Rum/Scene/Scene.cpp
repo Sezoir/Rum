@@ -13,7 +13,7 @@ namespace Rum::Scene
         mObjects.push_back(object);
     }
 
-    void Scene::onUpdate(const TimeStep& timestep)
+    void Scene::onUpdate(const Core::TimeStep& timestep)
     {
         for(auto& object : mObjects)
         {

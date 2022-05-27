@@ -4,7 +4,7 @@
 #include <cstdint>
 #include <string>
 // Project files
-#include "RObject.hpp"
+#include "Events/Event.hpp"
 
 namespace Rum::Core
 {
@@ -15,7 +15,7 @@ namespace Rum::Core
         std::string mTitle = "Rum Engine";
     };
 
-    class Window : public RObject
+    class Window : public Rum::Events::Observer
     {
     public:
         /**
