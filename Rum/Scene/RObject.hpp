@@ -20,7 +20,7 @@ namespace Rum::Scene
         virtual void load(){};
         virtual void unload(){};
 
-    private:
+    protected:
         RObject(){};
     };
 
