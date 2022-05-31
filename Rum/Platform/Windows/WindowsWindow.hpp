@@ -57,6 +57,11 @@ namespace Rum::Platform
          */
         void update() override;
 
+        /**
+         * @brief Get the configuration of the window
+         */
+        const Core::WindowConfig& getConfig() const override;
+
     private:
         /**
          * @brief Deleter for unique_ptr to GLFWwindow.

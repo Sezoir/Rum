@@ -59,6 +59,11 @@ namespace Rum::Core
         virtual void update() = 0;
 
         /**
+         * @brief Get the configuration of the window
+         */
+        virtual const WindowConfig& getConfig() const = 0;
+
+        /**
          * @brief Creates and returns an instance to a new window, based on the platform you are compiling for.
          * @param windowConfig: Configuration for the window.
          * @return std::unique_ptr<Window>: Pointer to the platform window class instance.

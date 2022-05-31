@@ -161,4 +161,9 @@ namespace Rum::Platform
         mContext->swapBuffers();
     }
 
+    const Core::WindowConfig& WindowsWindow::getConfig() const
+    {
+        return mConfig;
+    }
+
 } // namespace Rum::Platform
