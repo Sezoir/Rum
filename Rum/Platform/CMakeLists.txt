@@ -15,6 +15,7 @@ add_library(Platform
         OpenGL/OpenGLShader.cpp
         OpenGL/OpenGLTexture2D.hpp
         OpenGL/OpenGLTexture2D.cpp
+        OpenGL/OpenGLUniformBuffer.hpp
         GLFW/Utility.hpp
         GLFW/Utility.cpp)
 

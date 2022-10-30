@@ -14,7 +14,9 @@ add_library(Renderer
         Shader.hpp
         Shader.cpp
         Texture.hpp
-        Texture.cpp)
+        Texture.cpp
+        UniformBuffer.hpp
+        UniformBuffer.cpp)
 
 target_include_directories(Renderer PUBLIC
         ${PROJECT_SOURCE_DIR})
