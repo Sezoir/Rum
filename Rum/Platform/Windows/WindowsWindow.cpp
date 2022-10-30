@@ -56,6 +56,14 @@ namespace Rum::Platform
 
         // Set the window resize callback
         glfwSetWindowSizeCallback(mWindow.get(), [](GLFWwindow* window, int width, int height) {
+            // Required as glfw has no safeguard in cases that height/width is 0
+            // So we add our own
+            if(height == 0 && width == 0)
+            {
+                height = 1;
+                width = 1;
+            }
+
             // Get pointer to WindowsWindow class
             WindowsWindow& rWindow = *static_cast<WindowsWindow*>(glfwGetWindowUserPointer(window));
 
@@ -142,6 +150,16 @@ namespace Rum::Platform
             }
         });
 
+        // Set the window focus callback
+        glfwSetWindowFocusCallback(mWindow.get(), [](GLFWwindow* window, int focused) {
+            // Get pointer to WindowsWindow class
+            WindowsWindow& rWindow = *static_cast<WindowsWindow*>(glfwGetWindowUserPointer(window));
+            if(focused)
+                rWindow.notify(Events::WindowFocusEvent());
+            else
+                rWindow.notify(Events::WindowLostFocusEvent());
+        });
+
         // Return successful initialisation
         return true;
     }
@@ -164,6 +182,16 @@ namespace Rum::Platform
     const Core::WindowConfig& WindowsWindow::getConfig() const
     {
         return mConfig;
+    }
+
+    void WindowsWindow::setCursorControl(const Core::CursorConfig& config)
+    {
+        if(config.isFixed && config.isHidden)
+            glfwSetInputMode(mWindow.get(), GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+        else if(!config.isFixed && config.isHidden)
+            glfwSetInputMode(mWindow.get(), GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
+        else
+            glfwSetInputMode(mWindow.get(), GLFW_CURSOR, GLFW_CURSOR_NORMAL);
     }
 
 } // namespace Rum::Platform

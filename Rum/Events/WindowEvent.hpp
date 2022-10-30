@@ -50,4 +50,24 @@ namespace Rum::Events
         EVENT_CLASS_TYPE(WindowClose)
         EVENT_CATEGORY_TYPE(EventCategory::Window)
     };
+
+    // Used when a window is gains focus
+    class WindowFocusEvent : public Event
+    {
+    public:
+        WindowFocusEvent() = default;
+
+        EVENT_CLASS_TYPE(WindowFocus)
+        EVENT_CATEGORY_TYPE(EventCategory::Window)
+    };
+
+    // Used when a window is losses focus
+    class WindowLostFocusEvent : public Event
+    {
+    public:
+        WindowLostFocusEvent() = default;
+
+        EVENT_CLASS_TYPE(WindowLostFocus)
+        EVENT_CATEGORY_TYPE(EventCategory::Window)
+    };
 } // namespace Rum::Events

@@ -7,11 +7,12 @@
 #include "Types.hpp"
 #include "Renderer/Renderer.hpp"
 #include "Scene/SceneManager.hpp"
+#include "Events/Event.hpp"
 
 namespace Rum::Core
 {
 
-    class Application
+    class Application : public Events::Observer
     {
     public:
         /**
@@ -28,7 +29,7 @@ namespace Rum::Core
          * @brief Run the application. This should be the last line to run as it enters a infinite while loop,
          *         whilst the application is running.
          */
-        void run();
+        int run();
 
         /**
          * @brief Retrieves the instance of application from the stored static pointer to itself.
@@ -54,11 +55,22 @@ namespace Rum::Core
          */
         Scene::SceneManager& getSceneManager();
 
+        /**
+         * @brief Observer on event trigger
+         */
+        void onEvent(const Events::Event& event) override;
+
+        /**
+         * @brief Returns boolean on if the window is focused on
+         */
+        bool isFocused() const;
+
     private:
         std::unique_ptr<Window> mWindow = nullptr;
         Input mInput;
         Scene::SceneManager mSceneManager;
         TimePoint mTimePoint;
+        bool mFocus = false;
 
         // Pointer to itself, for use of getInstance function
         static Application* mEngine;

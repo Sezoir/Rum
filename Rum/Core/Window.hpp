@@ -15,6 +15,12 @@ namespace Rum::Core
         std::string mTitle = "Rum Engine";
     };
 
+    struct CursorConfig
+    {
+        bool isHidden = false;
+        bool isFixed = false;
+    };
+
     class Window : public Rum::Events::Observer
     {
     public:
@@ -62,6 +68,12 @@ namespace Rum::Core
          * @brief Get the configuration of the window
          */
         virtual const WindowConfig& getConfig() const = 0;
+
+        /**
+         * @brief Set the cursor control method
+         * @TODO: Might be worth changing in future to be more flexible
+         */
+        virtual void setCursorControl(const CursorConfig& config) = 0;
 
         /**
          * @brief Creates and returns an instance to a new window, based on the platform you are compiling for.

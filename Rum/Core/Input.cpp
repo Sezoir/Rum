@@ -109,22 +109,22 @@ namespace Rum::Core
         }
     }
 
-    bool Input::isKeyPressed(const Keyboard::Key key)
+    bool Input::isKeyPressed(const Keyboard::Key key) const
     {
         return mKeyboard[static_cast<Keyboard::KeyCode>(key)];
     }
 
-    glm::vec2 Input::getCursorPosition()
+    glm::vec2 Input::getCursorPosition() const
     {
         return {mXMousePos, mYMousePos};
     }
 
-    glm::vec2 Input::getMouseOffset()
+    glm::vec2 Input::getMouseOffset() const
     {
         return {mXMouseOffset, mYMouseOffset};
     }
 
-    bool Input::isMousePressed(Mouse::Button button)
+    bool Input::isMousePressed(Mouse::Button button) const
     {
         return mMouse[static_cast<Mouse::MouseCode>(button)];
     }

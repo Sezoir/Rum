@@ -12,7 +12,7 @@
 
 namespace Rum::Core
 {
-    class Input : private Rum::Events::Observer
+    class Input : public Rum::Events::Observer
     {
     public:
         /**
@@ -26,19 +26,19 @@ namespace Rum::Core
          * @return bool: - True if the key is currently pressed.
          *               - False if the key is currently released.
          */
-        bool isKeyPressed(Keyboard::Key key);
+        bool isKeyPressed(Keyboard::Key key) const;
 
         /**
          * @brief Retrieve the current position of the cursor in the window.
          * @return glm::vec2: (x,y) position of the cursor.
          */
-        glm::vec2 getCursorPosition();
+        glm::vec2 getCursorPosition() const;
 
         /**
          * @brief Retrieve the current offset of the mouse wheel.
          * @return glm::vec2: (x,y) offset of the mouse wheel.
          */
-        glm::vec2 getMouseOffset();
+        glm::vec2 getMouseOffset() const;
 
         /**
          * @brief Check whether a mouse button is pressed.
@@ -46,7 +46,7 @@ namespace Rum::Core
          * @return bool: - True if the button is currently pressed.
          *               - False if the button is currently released.
          */
-        bool isMousePressed(Mouse::Button button);
+        bool isMousePressed(Mouse::Button button) const;
 
         /**
          * @brief Event callback for receiving event updates.

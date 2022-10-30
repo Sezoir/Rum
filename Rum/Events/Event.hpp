@@ -85,9 +85,9 @@ namespace Rum::Events
          * @return T&: Reference which has been correctly casted from itself to the correct event type.
          */
         template <typename T>
-        T& convert()
+        const T& convert() const
         {
-            if(T* cast = dynamic_cast<T*>(this))
+            if(auto cast = dynamic_cast<const T*>(this))
             {
                 return *cast;
             }
@@ -95,6 +95,7 @@ namespace Rum::Events
             {
                 // Error logging
                 RUM_CORE_ERROR("Error: convert function for event {} failed to cast correctly", getName());
+                exit(-1); // @TODO: Add custom exit command
             }
         }
     };

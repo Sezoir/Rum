@@ -23,6 +23,9 @@ namespace Rum::Core
 
         // Initialise input
         mInput.init();
+
+        // Listen to window
+        mWindow->addSubject(*this);
     }
 
     Application::~Application()
@@ -30,7 +33,7 @@ namespace Rum::Core
         Application::mEngine = nullptr;
     }
 
-    void Application::run()
+    int Application::run()
     {
         // Testing logging @todo: remove in future
         RUM_CORE_INFO("Testing logging");
@@ -57,8 +60,11 @@ namespace Rum::Core
             mSceneManager.onUpdate(timeStep);
 
             // Render game
+            Renderer::Renderer::getAPI()->setClearColour({0.2f, 0.3f, 0.3f, 1.0f});
+            Renderer::Renderer::getAPI()->clear();
             mSceneManager.onDraw();
         }
+        return 0;
     }
 
     Application& Application::getInstance()
@@ -79,6 +85,30 @@ namespace Rum::Core
     Scene::SceneManager& Application::getSceneManager()
     {
         return mSceneManager;
+    }
+
+    void Application::onEvent(const Events::Event& event)
+    {
+        switch(event.getEventType())
+        {
+            case Events::EventType::WindowFocus:
+            {
+                mFocus = true;
+                break;
+            }
+            case Events::EventType::WindowLostFocus:
+            {
+                mFocus = false;
+                break;
+            }
+            default:
+                break;
+        }
+    }
+
+    bool Application::isFocused() const
+    {
+        return mFocus;
     }
 
 } // namespace Rum::Core

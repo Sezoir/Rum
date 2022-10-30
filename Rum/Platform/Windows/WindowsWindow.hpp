@@ -62,6 +62,12 @@ namespace Rum::Platform
          */
         const Core::WindowConfig& getConfig() const override;
 
+        /**
+         * @brief Set the cursor control method
+         * @TODO: Might be worth changing in future to be more flexible
+         */
+        void setCursorControl(const Core::CursorConfig& config) override;
+
     private:
         /**
          * @brief Deleter for unique_ptr to GLFWwindow.
