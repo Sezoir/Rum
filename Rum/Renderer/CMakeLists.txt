@@ -16,7 +16,10 @@ add_library(Renderer
         Texture.hpp
         Texture.cpp
         UniformBuffer.hpp
-        UniformBuffer.cpp)
+        UniformBuffer.cpp
+        Camera.hpp
+        FreeRoamCamera.hpp
+        FreeRoamCamera.cpp)
 
 target_include_directories(Renderer PUBLIC
         ${PROJECT_SOURCE_DIR})
