@@ -5,6 +5,11 @@ add_library(Renderer
         Renderer.cpp
         RendererAPI.hpp
         RendererApi.cpp
+        RendererBase.hpp
+        Renderer3D.hpp
+        Renderer3D.cpp
+        Objects/Cube.hpp
+        Objects/Cube.cpp
         ShaderManager.hpp
         ShaderManager.cpp
         DrawContext.hpp
