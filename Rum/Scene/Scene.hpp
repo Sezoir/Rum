@@ -6,6 +6,8 @@
 #include <entt/entt.hpp>
 // Project files
 #include "RObject.hpp"
+#include "Renderer/Camera.hpp"
+#include "Renderer/FreeRoamCamera.hpp"
 
 namespace Rum::Scene
 {
@@ -20,12 +22,14 @@ namespace Rum::Scene
     public:
         Scene()
             : mRegistry()
+            , mCamera(std::make_shared<Renderer::FreeRoamCamera>(90, 0.1, 1000))
         {
         }
         ~Scene() = default;
 
         std::unique_ptr<Entity> createEntity();
         void registerObject(std::shared_ptr<RObject> drawable);
+        void registerCamera(std::shared_ptr<Renderer::Camera> camera);
 
         void onUpdate(const Core::TimeStep& timestep);
         void onDraw();
@@ -38,5 +42,6 @@ namespace Rum::Scene
 
         entt::registry mRegistry;
         std::vector<std::shared_ptr<RObject>> mObjects;
+        std::shared_ptr<Renderer::Camera> mCamera;
     };
 } // namespace Rum::Scene

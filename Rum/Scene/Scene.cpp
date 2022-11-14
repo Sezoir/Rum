@@ -1,5 +1,7 @@
 #include "Scene.hpp"
 #include "Entity.hpp"
+#include "Components.hpp"
+#include "Renderer/UniformBuffer.hpp"
 
 namespace Rum::Scene
 {
@@ -13,6 +15,16 @@ namespace Rum::Scene
         mObjects.push_back(object);
     }
 
+    void Scene::registerCamera(std::shared_ptr<Renderer::Camera> camera)
+    {
+        if(camera == nullptr)
+        {
+            RUM_CORE_ERROR("Scene was given a nullptr when registering a camera.");
+            return;
+        }
+        mCamera = camera;
+    }
+
     void Scene::onUpdate(const Core::TimeStep& timestep)
     {
         for(auto& object : mObjects)
@@ -23,9 +35,11 @@ namespace Rum::Scene
 
     void Scene::onDraw()
     {
-        for(auto& object : mObjects)
+        auto view = mRegistry.view<TransformationComponent, MeshComponent>();
+        auto transformationBuffer = Renderer::UniformBuffer::create(sizeof(TransformationComponent));
+        for(auto [entity, transformation, mesh] : view.each())
         {
-            object->draw();
+            transformationBuffer->setData(&transformation);
         }
     }
 

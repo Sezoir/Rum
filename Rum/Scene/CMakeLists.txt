@@ -5,6 +5,7 @@ add_library(Scene
         Scene.cpp
         Entity.hpp
         Entity.cpp
+        Components.hpp
         SceneManager.hpp
         SceneManager.cpp)
 

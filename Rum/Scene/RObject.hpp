@@ -16,7 +16,6 @@ namespace Rum::Scene
     {
     public:
         virtual void update(const Core::TimeStep& timestep){};
-        virtual void draw(){};
         virtual void load(){};
         virtual void unload(){};
 
