@@ -111,4 +111,9 @@ namespace Rum::Core
         return mFocus;
     }
 
+    Renderer::ShaderManager& Application::getShaderManager()
+    {
+        return mShaderManager;
+    }
+
 } // namespace Rum::Core

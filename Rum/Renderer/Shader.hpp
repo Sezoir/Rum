@@ -24,6 +24,7 @@ namespace Rum::Renderer
             Linking
         };
 
+        Shader() = default;
         virtual ~Shader() = default;
 
         virtual const std::string& getName() = 0;

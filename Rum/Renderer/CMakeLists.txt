@@ -5,6 +5,8 @@ add_library(Renderer
         Renderer.cpp
         RendererAPI.hpp
         RendererApi.cpp
+        ShaderManager.hpp
+        ShaderManager.cpp
         DrawContext.hpp
         DrawContext.cpp
         Buffers.hpp

@@ -6,6 +6,7 @@
 #include "Input.hpp"
 #include "Types.hpp"
 #include "Renderer/Renderer.hpp"
+#include "Renderer/ShaderManager.hpp"
 #include "Scene/SceneManager.hpp"
 #include "Events/Event.hpp"
 
@@ -56,6 +57,12 @@ namespace Rum::Core
         Scene::SceneManager& getSceneManager();
 
         /**
+         * @brief Retrieves a reference to the scene manager for easy access.
+         * @return ShaderManager&: A reference to the ShaderManager instance.
+         */
+        Renderer::ShaderManager& getShaderManager();
+
+        /**
          * @brief Observer on event trigger
          */
         void onEvent(const Events::Event& event) override;
@@ -69,6 +76,7 @@ namespace Rum::Core
         std::unique_ptr<Window> mWindow = nullptr;
         Input mInput;
         Scene::SceneManager mSceneManager;
+        Renderer::ShaderManager mShaderManager;
         TimePoint mTimePoint;
         bool mFocus = false;
 
