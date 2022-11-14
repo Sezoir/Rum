@@ -4,11 +4,11 @@ cmake_minimum_required(VERSION 3.15)
 project(BasicRectangle)
 
 # Get all source files
-file(GLOB_RECURSE SOURCE_FILES CONFIGURE_DEPENDS *.cpp *.c)
+#file(GLOB_RECURSE SOURCE_FILES CONFIGURE_DEPENDS *.cpp *.c)
 
 # Add executable
 add_executable(${PROJECT_NAME}
-        ${SOURCE_FILES}
+        main.cpp
         )
 # Set c++ standard
 target_compile_features(${PROJECT_NAME} INTERFACE cxx_std_17)
